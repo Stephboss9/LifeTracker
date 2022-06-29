@@ -15,7 +15,6 @@ export default function Navbar() {
           <Link to = "/nutrition/*"  className = "link" ><span className = "nav-link" href='#s'>Nutrition</span></Link>
           <Link to = "/sleep"  className = "link" ><span className = "nav-link" href='#s'>Sleep</span></Link> 
           <Link to = "/login"  className = "link" ><span className = "nav-link" href='#s'>Login</span></Link> 
-          <Link to = "/register"  className = "link" > <span className = "nav-link sign-up" href='#s'>SignUp</span></Link>
         </div>
       </div>
     </div>

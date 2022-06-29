@@ -11,28 +11,28 @@
 .hero {
     height: 500px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     position: relative;
 }
 
 .hero-img {
-    opacity: .4;
-    position:absolute;
+    opacity: .8;
+    width: 800px;
+    height: 500px;
 }
 
-.intro-text {
+.cta {
     position: relative;
     z-index:10;
     color: var(--pure-white);
 }
-.intro-text h1 {
+.cta h1 {
     font-size: 80px;
     font-weight: 700;
 }
 
-.intro-text h4 {
+.cta h4 {
     font-size: 25px;
     font-weight: 50px
     ;
@@ -43,10 +43,43 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    margin-top: 90px;
+    margin-top: 180px;
+}
+
+.activity-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .activity-icon {
-    width: 55px;
-    height: 85px;
     margin-right: 20px;
+}
+
+.activity-icon.food {
+    width: 70px;
+    height: 50px;
+}
+
+.activity-icon.rest {
+    width: 70px;
+    height: 50px;
+}
+.activity-icon.fitness {
+    width: 70px;
+    height: 50px;
+}
+.activity-icon.planner {
+    width: 70px;
+    height: 50px;
+}
+
+.sign-up {
+    padding: 15px 25px;
+    background: #00c98e;
+    color: var(--pure-white);
+    border-radius: 5px;
+    margin-top: 30px;
+    cursor: pointer;
+    border: none;
 }
