@@ -6,7 +6,7 @@ const authenticateToken = require("../middleware/security")
 
 
 
-authRouter.get("/exercise",authenticateToken ,(req, res, next) => {
+authRouter.get("/me",authenticateToken ,(req, res, next) => {
     try {
         return res.status(201).json(req.user)
     }catch (err){
@@ -15,7 +15,7 @@ authRouter.get("/exercise",authenticateToken ,(req, res, next) => {
 })
 
 
-authRouter.post("/login",async (req, res, next) => {
+authRouter.post("/login", async (req, res, next) => {
     try {
         const user = await User.login(req.body)
         const token = generateToken(user)

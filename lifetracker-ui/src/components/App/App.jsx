@@ -13,6 +13,7 @@ import './App.css';
 
 export default function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false)
+  const [userState, setUserState] = useState(null)
   return (
     <div className="app">
       <React.Fragment>
