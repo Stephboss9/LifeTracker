@@ -34,6 +34,7 @@ class User {
     }
 
     static async register(credentials){
+        console.log(credentials)
 
         const requiredFields = ["email", "password", "userName", "firstName", "lastName"]
         requiredFields.forEach(field => {
