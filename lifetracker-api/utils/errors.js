@@ -20,4 +20,11 @@ class NotFoundError extends ExpressError {
    
 }
 
-module.exports = {ExpressError, BadRequestError, NotFoundError}
+class UnauthorizedError extends ExpressError {
+    constructor(message = "Not Found"){
+        super(401, message);
+    }
+   
+}
+
+module.exports = {ExpressError, BadRequestError, NotFoundError, UnauthorizedError}
