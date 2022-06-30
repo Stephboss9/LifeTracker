@@ -2,7 +2,7 @@ const {Client} = require("pg")
 const {getDatabaseUri} = require("./config")
 require("colors")
 
-const db = new Client({connectionString: getDatabaseUri})
+const db = new Client({connectionString: getDatabaseUri()})
 
 db.connect(err => {
     if(err){
@@ -12,4 +12,5 @@ db.connect(err => {
         console.log("Succesfully connected to postgres db!".green)
     }
 })
+
 module.exports = db

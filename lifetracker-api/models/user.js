@@ -2,7 +2,6 @@ const db = require("../db")
 const bcrypt = require("bcrypt")
 const {BCRYPT_WORK_FACTOR} = require("../config")
 const {BadRequestError, UnauthorizedError} = require("../utils/errors")
-
 class User {
 
     static async makePublicUser(user) {
@@ -28,13 +27,14 @@ class User {
 
         if(currentUser) {
             let isValid = await bcrypt.compare(credentials.password, currentUser.password)
-            if (isValid){User.makePublicUser(currentUser)}
+            if (isValid){return User.makePublicUser(currentUser)}
         }
         throw new UnauthorizedError("Invalid email/password combo")
 
     }
 
     static async register(credentials){
+
         const requiredFields = ["email", "password", "userName", "firstName", "lastName"]
         requiredFields.forEach(field => {
             if(!credentials.hasOwnProperty(field)){throw new BadRequestError(`Missing ${field} in request body`)}
@@ -44,6 +44,7 @@ class User {
         if(currentUser){
             throw new BadRequestError(`Duplicate Email: ${credentials.email}`)
         }
+
 
         const hashedPW = await bcrypt.hash(credentials.password, BCRYPT_WORK_FACTOR)
         const created_at = new Date().toISOString()
@@ -61,20 +62,23 @@ class User {
              )
              VALUES($1, $2, $3, $4, $5, $6, $7)   
              RETURNING id, username, first_name, last_name, email, created_at;
-           `  , credentials.username, hashedPW, credentials.firstName, credentials.lastName, credentials.email, created_at, created_at)
-
+           `  , [credentials.userName, hashedPW, credentials.firstName, credentials.lastName, credentials.email, created_at, created_at])
+                console.log("yo")
             const user = result.rows[0]
             return User.makePublicUser(user)
 
     }
 
     static async fetchUserByEmail(email){
+
         if(!email){
             throw new BadRequestError("no email provided")
         }
-        let query = 'SELECT FROM users WHERE email = $1'
-        let result = db.query(query, email.toLowerCase())
+        let query = 'SELECT * FROM users WHERE email = $1'
+        let result = await db.query(query, [email.toLowerCase()])
+
         const user = result.rows[0]
+
         return user
     }
 }
