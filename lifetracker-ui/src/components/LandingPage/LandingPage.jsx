@@ -10,7 +10,7 @@ import fitness1 from "../../assets/fitness-img1.png"
 import fitness2 from "../../assets/fitness-img2.png"
 import fitness3 from "../../assets/fitness3.png"
 import { Link  } from 'react-router-dom'
-export default function LandingPage() {
+export default function LandingPage({userLoggedIn, setUserLoggedIn}) {
 
   return (
     <div className='landing'>
@@ -18,26 +18,23 @@ export default function LandingPage() {
         <div className='cta'>
           <h1>LifeTracker</h1>
           <h4>Helping you get in and stay in shape</h4>
-          <Link to = "/register"  className = "link" > <button className = "nav-link sign-up" href='#s'>Sign Up</button></Link>
-
+          {!userLoggedIn?<Link to = "/register"  className = "link" > <button className = "nav-link sign-up" href='#s'>Sign Up</button></Link>:null}
         </div>
         <img src={fitness2} className = "hero-img"/>
       </div>
       <div className='activity-icons'>
-        <div className='activity-wrapper'> <img className = "activity-icon planner" src = {planner}></img> 
-        <h2 className='icon-sub'>Planning</h2>
+          <div className='activity-wrapper'> <img className = "activity-icon planner" src = {planner}></img> 
+          <h2 className='icon-sub'>Planning</h2>
         </div>
-        <div className='activity-wrapper'><img className = "activity-icon food" src = {food}></img>
-        <h2 className='Food'>Food</h2>
-
-         </div>
-        <div className='activity-wrapper'> <img className = "activity-icon fitness" src = {fitnessIcon}></img> 
-        <h2 className='Fitness'>Fitness</h2>
-
+        <div className='activity-wrapper'>
+          <img className = "activity-icon food" src = {food}></img>
+          <h2 className='Food'>Food</h2>
         </div>
-        <div className='activity-wrapper'>  <img className = "activity-icon rest" src = {rest}></img>
-        <h2 className='Rest'>Rest</h2>
-
+            <div className='activity-wrapper'> <img className = "activity-icon fitness" src = {fitnessIcon}></img> 
+            <h2 className='Fitness'>Fitness</h2>
+        </div>
+            <div className='activity-wrapper'>  <img className = "activity-icon rest" src = {rest}></img>
+            <h2 className='Rest'>Rest</h2>
         </div>
         
         </div>

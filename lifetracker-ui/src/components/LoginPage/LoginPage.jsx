@@ -1,7 +1,7 @@
 import React from 'react'
 import "./LoginPage.css"
 
-export default function LoginPage() {
+export default function LoginPage({setUserLoggedIn, userLoggedIn}) {
   return (
     <div className='login-page'>
       <h1 className='login-title'>Login</h1>
@@ -13,7 +13,8 @@ export default function LoginPage() {
         <span className = "email-title">Password</span>
         <input className='form-input' placeholder = "type password" name = "name" type = "password" ></input>
 
-        <button className='submit-login'>Login</button>
+        <span className='submit-login' onClick={() => {setUserLoggedIn(true)}}>Login</span>
+       {console.log(userLoggedIn)}
       </form>
     </div>
   )

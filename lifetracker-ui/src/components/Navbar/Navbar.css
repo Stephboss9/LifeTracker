@@ -40,9 +40,10 @@
     color: rgb(255, 255, 255);
 }
 
-.sign-up {
+.sign-out {
     padding: 15px 25px;
     background: #00c98e;
     color: white;
     border-radius: 5px;
+    cursor: pointer;
 }
