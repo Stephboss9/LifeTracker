@@ -1,34 +1,26 @@
-.registration-form {
+.login-title {
+    font-size: 45px;
+}
+
+.login-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 700px;
-    height: 800px;
+    height: 400px;
     border: 1px solid var(--border-color);
 }
 .form-input {
     margin: 20px 0;
-    padding: 16px 20px;
+    padding: 10px 20px;
     width: 400px;
     background: transparent;
     border: 1px solid var(--border-color);
     color: var(--pure-white);
 }
-::placeholder {
-    color: var(--pure-white);
-}
-.input-field {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 570px;
-}
-.input-field .input-title {
-    flex: 1;
-}
-.submit-registration {
-    margin-top: 50px;
+.submit-login {
+    margin-top: 20px;
     padding: 10px 25px;
     background: #00c98e;
     color: white;

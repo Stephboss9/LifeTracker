@@ -9,34 +9,3 @@
     font-family: 'Trispace', sans-serif;
 }
 
-.login-title {
-    font-size: 45px;
-}
-
-.login-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 700px;
-    height: 400px;
-    border: 1px solid var(--border-color);
-}
-.form-input {
-    margin: 20px 0;
-    padding: 10px 20px;
-    width: 400px;
-    background: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--pure-white);
-}
-.submit-login {
-    margin-top: 20px;
-    padding: 10px 25px;
-    background: #00c98e;
-    color: white;
-    border-radius: 5px;
-    width:400px;
-    font-size: 23px;
-    cursor: pointer;
-} 

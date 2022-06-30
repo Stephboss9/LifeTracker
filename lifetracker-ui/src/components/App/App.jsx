@@ -7,7 +7,7 @@ import LoginPage from 'components/LoginPage/LoginPage';
 import NutritionPage from 'components/NutritionPage/NutritionPage';
 import NotFound from 'components/NotFound/NotFound';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import {AuthContextProvider}  from '../../../contexts/auth';
+import {AuthContextProvider,useAuthContext}  from '../../../contexts/auth';
 import Sleep from 'components/Sleep/Sleep';
 import { useState } from 'react';
 import './App.css';
@@ -21,9 +21,8 @@ export default function AppContainer(){
   )
 }
 
-export function App() {
+function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false)
-  const {user, setUser, initialized, setInitialized, isProcessing, setIsProcessing, error, setError, loginUser, signupUser, fetchUserFromToken} = useAuthContext()
   return (
     <div className="app">
       <React.Fragment>
@@ -32,7 +31,7 @@ export function App() {
           <Routes>
             <Route path = "/" element ={<LandingPage  userLoggedIn = {userLoggedIn} setUserLoggedIn = {setUserLoggedIn}/>}/> 
             <Route path= "/login" element={<LoginPage userLoggedIn = {userLoggedIn} setUserLoggedIn = {setUserLoggedIn}/>}/>
-            <Route path= "/register" element={<RegisterPage/>}/>
+            <Route path= "/register" element={<RegisterPage setUserLoggedIn={setUserLoggedIn}/>}/>
             <Route path = "/activity" element = {<ActivityPage/>}/>
             <Route path = "/nutrition/*" element = {<NutritionPage/>}/>
             <Route path = "/sleep" element = {<Sleep/>}/>

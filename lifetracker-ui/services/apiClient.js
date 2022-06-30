@@ -15,12 +15,14 @@ class ApiClient {
        let  user = null
        //handles login requests
         if(endpoint ==='login') {
-        axios.post(`"http://localhost:3001"/${endpoint}`, {
+        axios.post(`http://localhost:3001/auth/${endpoint}`, {
             "email":userInfo.email,
             "password":userInfo.password
         }).then (response => {
-            window.localStorage.setItem("lifetracker_token", this.token)
+            console.log(response.data.token)
+            window.localStorage.setItem("lifetracker_token", response.data.token)
             user = response.data.user
+            console.log(user)
 
         }). catch (err => {
             console.log(err)
@@ -28,7 +30,7 @@ class ApiClient {
         }
         //handles register requests
         else if(endpoint==='register'){
-            axios.post(`"http://localhost:3001"/${endpoint}`, {
+            axios.post(`http://localhost:3001/auth/${endpoint}`, {
                 "email":userInfo.email,
                 "password":userInfo.password,
                 "userName":userInfo.userName,
@@ -36,21 +38,22 @@ class ApiClient {
                 "lastName":userInfo.lastName
             }).then (response => {
                 console.log("User registered succesfully")
+                console.log(response.data)
                 user = response.data.user
                 //login the user at the same time
-                this.login({"email": response.user.email, "password":response.user.password})
+                login({"email": userInfo.email, "password":userInfo.password})
             }). catch (err => {
                 console.log(err)
             }) 
         }
         //handles 
         else if (endpoint = 'me') {
-            axios.get(`"http://localhost:3001"/${endpoint}`, 
+            axios.get(`http://localhost:3001/${endpoint}`, 
             userInfo,
             {
                 headers: {
                     "Content-Type": `application/json`,
-                    "Authorization": `Bearer ${userInfo}`
+                    "authentication": `Bearer ${userInfo}`
                 }
             }).then (response => {
                 console.log("User registered succesfully")
@@ -59,21 +62,22 @@ class ApiClient {
                 console.log(err)
             })  
         }
+        return user
     }
-    static login (userInfo){
-        request("login", userInfo)
-    }
-
-    static signup (userInfo){
-        request("register", userInfo)
-    }
-    static fetchUserFromToken (){
-        request("me", this.token)
+   login (userInfo){
+       ApiClient.request("login", userInfo)
     }
 
-    static logout(){
+     signup (userInfo){
+        ApiClient.request("register", userInfo)
+    }
+     fetchUserFromToken (){
+        ApiClient.request("me", this.token)
+    }
+
+   logout(){
         window.localStorage.removeItem('lifetracker_token')
-        location.reload()
+        location.replace("http://localhost:3000/")
     }
 
     loggedIn() {

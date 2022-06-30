@@ -1,9 +1,11 @@
 import React from "react"
 import { createContext, useEffect, useState, useContext } from "react"
+import {API_BASE_URL} from "../constants"
 
 import apiClient  from "../services/apiClient"
 
-const AuthContext = createContext(null)
+const PAGE_URL = "http://localhost:3000"
+const AuthContext = createContext()
 
 export const AuthContextProvider = ({children}) => {
     let client = new apiClient()
@@ -13,12 +15,12 @@ export const AuthContextProvider = ({children}) => {
     const [isProcessing, setIsProcessing] = useState(false)
     const [error, setError] = useState(null)
 
-    
+
     const loginUser = (user)=> {
         client.login(user)
     }
     const signupUser = (user)=> {
-        client.register(user)
+        client.signup(user)
 
     }
     const fetchUserFromToken = ()=> {
@@ -26,15 +28,19 @@ export const AuthContextProvider = ({children}) => {
     }
     const logoutUser = ()=> {
         window.localStorage.removeItem('lifetracker_token')
-        location.reload()
+        location.assign(PAGE_URL)
     }
 
-    const authValue = {user, setUser, initialized, setInitialized, isProcessing, setIsProcessing, error, setError, loginUser, signupUser, fetchUserFromToken}
+    const authValue = {user, setUser, initialized, setInitialized, isProcessing, setIsProcessing, error, setError, loginUser, signupUser, fetchUserFromToken, logoutUser}
 
     //check if jwt token exists
     useEffect(() => {
+
         let currentToken = window.localStorage.getItem("lifetracker_token")
+        console.log("current token: ", currentToken)
+
         if(currentToken) {
+            console.log("current token: ", currentToken)
             client.setToken(currentToken)
             setIsProcessing(true)
             setError(null)
@@ -46,11 +52,7 @@ export const AuthContextProvider = ({children}) => {
             setIsProcessing(false)
         }
     }, [])
-
-    
             //any children nested in the the Authcontext provider can get access to
-
-
     {
         return (
             <AuthContext.Provider value = {authValue} >
@@ -60,8 +62,8 @@ export const AuthContextProvider = ({children}) => {
 
     }
 
-};
-export const useAuthContext = ()=> {useContext(AuthContext)}
+}
+export const useAuthContext = () => {return useContext(AuthContext)}
 
 
 
