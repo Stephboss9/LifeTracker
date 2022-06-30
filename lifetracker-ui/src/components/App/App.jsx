@@ -7,13 +7,23 @@ import LoginPage from 'components/LoginPage/LoginPage';
 import NutritionPage from 'components/NutritionPage/NutritionPage';
 import NotFound from 'components/NotFound/NotFound';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import {AuthContextProvider}  from '../../../contexts/auth';
 import Sleep from 'components/Sleep/Sleep';
 import { useState } from 'react';
 import './App.css';
 
-export default function App() {
+
+export default function AppContainer(){
+  return (
+    <AuthContextProvider>
+      <App/>
+    </AuthContextProvider>
+  )
+}
+
+export function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false)
-  const [userState, setUserState] = useState(null)
+  const {user, setUser, initialized, setInitialized, isProcessing, setIsProcessing, error, setError, loginUser, signupUser, fetchUserFromToken} = useAuthContext()
   return (
     <div className="app">
       <React.Fragment>
