@@ -1,21 +1,15 @@
 const express = require("express")
 const Nutrition = require("../models/nutrition")
+const { BadRequestError } = require("../utils/errors")
 const nutritionRouter = express.Router()
 
 
 
-nutritionRouter.get("/d", async (req, res, next) => {
-    try {
-       return res.status(200).json({"nutritions":"ds"})
-    }catch (err){
-        next(err)
-    }
-})
-
 
 nutritionRouter.get("/", async (req, res, next) => {
     try {
-        userId = req.header['userId']
+        console.log("header")
+        userId = req.headers['user_id']
        const nutritions = await Nutrition.listNutritionForUser(userId)
        return res.status(201).json({"nutritions":nutritions})
     }catch (err){

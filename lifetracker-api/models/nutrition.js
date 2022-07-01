@@ -41,6 +41,7 @@ class Nutrition {
     }
 
     static async listNutritionForUser(user_id){
+        console.log(user_id)
         if(!user_id){
             throw new BadRequestError("no user id provided")
         }
