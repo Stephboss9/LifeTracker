@@ -16,5 +16,6 @@ category          TEXT NOT NULL,
 calories          INT NOT NULL,
 image_url         TEXT NOT NULL,
 user_id           INT NOT NULL,
-created_at        TEXT NOT NULL
+created_at        TEXT NOT NULL,
+quantity          INT NOT NULL DEFAULT 1
 );
