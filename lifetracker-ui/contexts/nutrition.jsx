@@ -16,13 +16,13 @@ export const NutritionContextProvider = ({children}) => {
     const {user} = useAuthContext()
 
   
-    useEffect(() => {
+    useEffect(async () => {
         if(user) {
             setIsLoading(true)
-            setIsProcessing(true)
+            setInitialized(true)
             setError(null)
             try {
-                setNutritions([])
+                setNutritions(await client.getNutrition(user.id))
                 setError(null)
             }catch(err){
                 setError(err)

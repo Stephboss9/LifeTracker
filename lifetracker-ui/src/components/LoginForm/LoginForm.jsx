@@ -16,12 +16,13 @@ export default function LoginForm({ setUserLoggedIn, userLoggedIn}) {
       }
 
     const handleOnLoginUser = async (currentUser) => {
+      setRefresh(!refresh)
+      //get the reponse from api after logging in
       let userResponse = await loginUser(currentUser)
-      if (refresh){setRefresh(false)}else {setRefresh(true)}
+      //if valid credentials were used, navigate to activity page, else dont
+      if (userResponse.hasOwnProperty('user')){setUserLoggedIn(true)}else {false}
+
        console.log("currentUser in LoginForm is: ", userResponse)
-       console.log(userResponse.user)
-       console.log("user object: ",user)
-       if(userResponse.hasOwnProperty("user")){return userResponse.user}else {return null}
     }
   
   
@@ -37,9 +38,7 @@ export default function LoginForm({ setUserLoggedIn, userLoggedIn}) {
       {correctInfo===null?<span className='invalid-message'>Invalid Email/Password combo</span>:null}
 
       <button className='submit-login' type = 'button' onClick={() => {
-        if(handleOnLoginUser(LoginInfo) != null){
-          setUserLoggedIn(true)
-          }else {setUserLoggedIn(false)}
+        handleOnLoginUser(LoginInfo) 
         }
       }
         >Login</button>

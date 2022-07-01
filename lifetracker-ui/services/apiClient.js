@@ -72,13 +72,9 @@ class ApiClient {
                         name:userInfo.name,
                         category:userInfo.category,
                         calories:userInfo.calories,
-                        createdAt:userInfo.createdAt
+                        createdAt:userInfo.createdAt,
+                        quantity:userInfo.quantity
                     },
-                    headers: {
-                        "content-type": `application/json`,
-                        "authentication": `Bearer ${userInfo}`,
-                        "userId": '${id}'
-                    }
                 }
                 
                 )
@@ -95,9 +91,10 @@ class ApiClient {
                     headers: {
                         "content-type": `application/json`,
                         "authentication": `Bearer ${userInfo}`,
-                        "userId": '${id}'
+                        "user_id": `${id}`
                     }
-                })
+                })                   
+                     console.log("products for currentUser", response.data)
                     return response.data
             }catch (err) {
                 console.log(err)
@@ -131,13 +128,13 @@ class ApiClient {
         } else {return true}
     }
 
-    getNutrition = async (nutritionInfo, userId) =>{
+    getNutrition = async (userId) =>{
         return await this.request("nutrition_get", this.token, userId)
 
     }
 
     pushNutrition = async (nutritionInfo, userId) => {
-        return await this.request("nutrition_post", this.token, userId)
+        return await this.request("nutrition_post", nutritionInfo, userId)
 
     }
 

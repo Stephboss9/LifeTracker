@@ -36,7 +36,7 @@ export const AuthContextProvider = ({children}) => {
         location.assign(PAGE_URL)
     }
 
-    useEffect(() => {
+    useEffect(async () => {
         console.log("USE EFFECT HAS BEEN CALLED")
         let currentToken = window.localStorage.getItem("lifetracker_token")
         console.log("currentToken in auth", currentToken)
@@ -45,7 +45,7 @@ export const AuthContextProvider = ({children}) => {
             setIsProcessing(true)
             setError(null)
             try {
-                setUser(fetchUserFromToken())
+                setUser(await fetchUserFromToken())
                 console.log("user in auth context hok is: ", user)
                 setError(null)
             }catch(err){
@@ -55,7 +55,7 @@ export const AuthContextProvider = ({children}) => {
             setInitialized(true)
             setIsProcessing(false)
         }
-    },[refresh, setRefresh])
+    },[refresh])
 
 
     

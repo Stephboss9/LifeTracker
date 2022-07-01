@@ -9,6 +9,7 @@ import NutritionForm from 'components/NutritionForm/NutritionForm';
 import NotFound from 'components/NotFound/NotFound';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import {AuthContextProvider,useAuthContext}  from '../../../contexts/auth';
+import {NutritionContextProvider, useNutritionContext} from "../../../contexts/nutrition"
 import Sleep from 'components/Sleep/Sleep';
 import { useState } from 'react';
 import './App.css';
@@ -19,7 +20,9 @@ import NutritionCard from 'components/NutritionCard/NutritionCard';
 export default function AppContainer(){
   return (
     <AuthContextProvider>
-      <App/>
+                <NutritionContextProvider>
+                    <App/>
+                </NutritionContextProvider>
     </AuthContextProvider>
   )
 }
