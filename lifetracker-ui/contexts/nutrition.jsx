@@ -5,7 +5,7 @@ import {API_BASE_URL} from "../constants"
 import apiClient  from "../services/apiClient"
 
 const PAGE_URL = "http://localhost:3000"
-const AuthContext = createContext()
+const NutritionContext = createContext()
 
 export const AuthContextProvider = ({children}) => {
     let client = new apiClient()

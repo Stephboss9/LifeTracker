@@ -16,7 +16,7 @@ let navigate = useNavigate()
   
   return (
     <div className='login-page'>
-      
+     <h1 className='login-title'>Login</h1>
       {<LoginForm setUserLoggedIn= {setUserLoggedIn} userLoggedIn = {userLoggedIn}/>}
     </div>
   )

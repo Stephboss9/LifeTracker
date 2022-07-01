@@ -1,0 +1,26 @@
+.nutrition-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 400px;
+    width: 400px;
+    border: 1px solid var(--pure-white);
+}
+.nutrition-info-wrapper {
+    width: 95%;
+    margin: 0 auto;
+}
+.nutrition-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 95% ;
+
+}
+
+.nutrition-category, .nutrition-name, .nutrition-calories, .nutrition-date {
+    margin-top: 15px;
+    flex: .5 .5;
+}
+

@@ -1,32 +1,32 @@
 import axios from "axios"
-
 class ApiClient {
     constructor(remoteHostUrl = "http://localhost:3001"){
         this.remoteHostUrl = remoteHostUrl
         this.token = null
+        this.currentUser = null
     }
    
    
     setToken(token){
         this.token = token
+        window.localStorage.setItem("lifetracker_token", token)
+
     }
 
-    static request (endpoint, userInfo){
-       let  user = null
+    async request (endpoint, userInfo){
        //handles login requests
         if(endpoint ==='login') {
-        axios.post(`http://localhost:3001/auth/${endpoint}`, {
-            "email":userInfo.email,
-            "password":userInfo.password
-        }).then (response => {
-            console.log(response.data.token)
-            window.localStorage.setItem("lifetracker_token", response.data.token)
-            user = response.data.user
-            console.log(user)
-
-        }). catch (err => {
+        try {
+            let response = await axios.post(`http://localhost:3001/auth/${endpoint}`, {
+                "email":userInfo.email,
+                "password":userInfo.password
+            })
+                this.setToken(response.data.token)
+                return response.data
+        }catch (err) {
             console.log(err)
-        })
+            return err;
+        }
         }
         //handles register requests
         else if(endpoint==='register'){
@@ -39,40 +39,43 @@ class ApiClient {
             }).then (response => {
                 console.log("User registered succesfully")
                 console.log(response.data)
-                user = response.data.user
+                this.login({"email": userInfo.email, "password":userInfo.password})
+                return response.data
                 //login the user at the same time
-                login({"email": userInfo.email, "password":userInfo.password})
             }). catch (err => {
-                console.log(err)
+                console.log("error is", err)
             }) 
         }
         //handles 
         else if (endpoint = 'me') {
-            axios.get(`http://localhost:3001/${endpoint}`, 
-            userInfo,
-            {
-                headers: {
-                    "Content-Type": `application/json`,
-                    "authentication": `Bearer ${userInfo}`
-                }
-            }).then (response => {
-                console.log("User registered succesfully")
-                user = response.data.user
-            }). catch (err => {
+            try {
+                let response = await axios.get(`http://localhost:3001/auth/${endpoint}`, 
+                {
+                    headers: {
+                        "content-type": `application/json`,
+                        "authentication": `Bearer ${userInfo}`
+                    }
+                })
+                console.log("User Logged in succesfully", response.data)
+                return response.data
+            } catch (err)  {
                 console.log(err)
-            })  
+                return err
+            }
         }
-        return user
     }
-   login (userInfo){
-       ApiClient.request("login", userInfo)
+    async login (userInfo){
+       return await this.request("login", userInfo)
     }
 
      signup (userInfo){
-        ApiClient.request("register", userInfo)
+        this.request("register", userInfo)
+        if(this.currentUser != null) {
+            console.log(this.currentUser)
+        }
     }
-     fetchUserFromToken (){
-        ApiClient.request("me", this.token)
+    async fetchUserFromToken () {
+       return await this.request("me", this.token)
     }
 
    logout(){

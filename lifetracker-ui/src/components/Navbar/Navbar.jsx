@@ -30,7 +30,6 @@ export default function Navbar({userLoggedIn, setUserLoggedIn}) {
           logoutUser()
           navigate("/")
           }} className = "nav-link sign-out">Sign Out</span></Link>}
-          {console.log(userLoggedIn)}
         </div>
       </div>
     </div>

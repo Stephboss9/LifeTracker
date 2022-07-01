@@ -1,0 +1,45 @@
+.nutrition-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color);
+    width: 1000px;
+    height: 600px;
+    margin: 10px auto;
+}
+
+.nutrition-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.nutrition-split-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.nutrition-input-title{
+    font-size: 15px;
+    align-self: flex-start;
+}
+
+.form-input {
+    padding: 15px 20px;
+    border-radius: 5px;
+
+}
+
+.submit-nutrition {
+    padding: 10px 25px;
+    background: #00c98e;
+    color: white;
+    border-radius: 5px;
+    width:400px;
+    font-size: 23px;
+    cursor: pointer;
+}

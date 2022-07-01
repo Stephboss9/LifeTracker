@@ -5,12 +5,15 @@ import RegisterPage from 'components/RegisterPage/RegisterPage';
 import ActivityPage from 'components/ActivityPage/ActivityPage';
 import LoginPage from 'components/LoginPage/LoginPage';
 import NutritionPage from 'components/NutritionPage/NutritionPage';
+import NutritionForm from 'components/NutritionForm/NutritionForm';
 import NotFound from 'components/NotFound/NotFound';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import {AuthContextProvider,useAuthContext}  from '../../../contexts/auth';
 import Sleep from 'components/Sleep/Sleep';
 import { useState } from 'react';
 import './App.css';
+import NutritionNew from 'components/NutritionNew/NutritionNew';
+import NutritionCard from 'components/NutritionCard/NutritionCard';
 
 
 export default function AppContainer(){
@@ -33,7 +36,7 @@ function App() {
             <Route path= "/login" element={<LoginPage userLoggedIn = {userLoggedIn} setUserLoggedIn = {setUserLoggedIn}/>}/>
             <Route path= "/register" element={<RegisterPage setUserLoggedIn={setUserLoggedIn}/>}/>
             <Route path = "/activity" element = {<ActivityPage/>}/>
-            <Route path = "/nutrition/*" element = {<NutritionPage/>}/>
+            <Route path = "/nutrition/*" element = {<NutritionCard/>}/>
             <Route path = "/sleep" element = {<Sleep/>}/>
             <Route path= "*" element ={<NotFound/>}/> 
           </Routes>
