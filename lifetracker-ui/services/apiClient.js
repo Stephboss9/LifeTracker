@@ -1,4 +1,6 @@
 import axios from "axios"
+const PAGE_URL = "http://localhost:3000"
+
 class ApiClient {
     constructor(remoteHostUrl = "http://localhost:3001"){
         this.remoteHostUrl = remoteHostUrl
@@ -48,7 +50,7 @@ class ApiClient {
             }) 
         }
         //handles 
-        else if (endpoint = 'me') {
+        else if (endpoint === 'me') {
             try {
                 let response = await axios.get(`http://localhost:3001/auth/${endpoint}`, 
                 {
@@ -64,7 +66,7 @@ class ApiClient {
                 return err
             }
         }
-        else if(endpoint = "nutrition_post"){
+        else if(endpoint === "nutrition_post"){
             try {
                 let response = await axios.post(`http://localhost:3001/nutrition`, {
                     nutrition: {
@@ -72,7 +74,6 @@ class ApiClient {
                         name:userInfo.name,
                         category:userInfo.category,
                         calories:userInfo.calories,
-                        createdAt:userInfo.createdAt,
                         quantity:userInfo.quantity
                     },
                 }
@@ -85,7 +86,7 @@ class ApiClient {
                 return err;
             }
         }
-        else if(endpoint = "nutrition_get"){
+        else if(endpoint === "nutrition_get"){
             try {
                 let response = await axios.get(`http://localhost:3001/nutrition`, {
                     headers: {
@@ -118,8 +119,9 @@ class ApiClient {
     }
 
    logout(){
-        window.localStorage.removeItem('lifetracker_token')
-        location.replace("http://localhost:3000/")
+        this.setToken("")
+        console.log("current token in api client:", this.token)
+        location.assign(PAGE_URL)
     }
 
     loggedIn() {

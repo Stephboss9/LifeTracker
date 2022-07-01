@@ -7,9 +7,12 @@ import { useEffect } from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import "./NutritionPage.css"
 import NutritionNew from 'components/NutritionNew/NutritionNew'
-export default function NutritionPage() {
+import {NutritionContextProvider, useNutritionContext} from "../../../contexts/nutrition"
 
+
+export default function NutritionPage() {
   return (
+    
     
     <div className='nutrition-page'>
       <Routes>

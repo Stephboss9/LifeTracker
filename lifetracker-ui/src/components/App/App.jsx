@@ -15,6 +15,7 @@ import { useState } from 'react';
 import './App.css';
 import NutritionNew from 'components/NutritionNew/NutritionNew';
 import NutritionCard from 'components/NutritionCard/NutritionCard';
+import NutritionOverview from 'components/NutritionOverview/NutritionOverview';
 
 
 export default function AppContainer(){
@@ -39,8 +40,8 @@ function App() {
             <Route path= "/login" element={<LoginPage userLoggedIn = {userLoggedIn} setUserLoggedIn = {setUserLoggedIn}/>}/>
             <Route path= "/register" element={<RegisterPage setUserLoggedIn={setUserLoggedIn}/>}/>
             <Route path = "/activity" element = {<ActivityPage/>}/>
-            <Route path = "/nutrition/*" element = {<NutritionPage/>}/>
-            <Route path = "/sleep" element = {<Sleep/>}/>
+            <Route path = "/nutrition/*" element = {<NutritionOverview/>}/>
+            <Route path = "/sleep" element = {<NutritionForm/>}/>
             <Route path= "*" element ={<NotFound/>}/> 
           </Routes>
         </BrowserRouter>

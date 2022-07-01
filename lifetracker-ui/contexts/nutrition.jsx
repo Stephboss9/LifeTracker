@@ -9,20 +9,24 @@ const NutritionContext = createContext()
 export const NutritionContextProvider = ({children}) => {
     let client = new ApiClient()
     //define necessary states
+    const [refresh, setRefresh] = useState(false)
     const [nutritions, setNutritions] = useState(null)
     const [initialized, setInitialized] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
     const {user} = useAuthContext()
 
-  
+    const pushNutrition = (nutritionInfo) => {
+        client.pushNutrition(nutritionInfo)
+    }
     useEffect(async () => {
         if(user) {
             setIsLoading(true)
             setInitialized(true)
             setError(null)
             try {
-                setNutritions(await client.getNutrition(user.id))
+                setNutritions((await client.getNutrition(user.id)).nutritions)
+                console.log(nutritions)
                 setError(null)
             }catch(err){
                 setError(err)
@@ -30,12 +34,12 @@ export const NutritionContextProvider = ({children}) => {
         }
         setInitialized(true)
         setIsLoading(false)
-    },[])
+    },[user, refresh, setRefresh])
 
 
     
 
-    const authValue = {nutritions, initialized, isLoading, error}
+    const authValue = {nutritions, initialized, isLoading, error, refresh, setRefresh, pushNutrition}
 
     //check if jwt token exists
    

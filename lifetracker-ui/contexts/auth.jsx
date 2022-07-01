@@ -32,8 +32,7 @@ export const AuthContextProvider = ({children}) => {
     }
     
     const logoutUser = async()=> {
-        window.localStorage.setItem('lifetracker_token', "")
-        location.assign(PAGE_URL)
+        client.logout()
     }
 
     useEffect(async () => {
@@ -55,7 +54,7 @@ export const AuthContextProvider = ({children}) => {
             setInitialized(true)
             setIsProcessing(false)
         }
-    },[refresh])
+    },[refresh, setRefresh])
 
 
     

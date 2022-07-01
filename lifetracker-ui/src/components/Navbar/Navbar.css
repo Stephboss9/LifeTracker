@@ -4,6 +4,7 @@
     display: flex;
     flex: row;
     height: 100px;
+    background-color: rgb(52, 87, 131)
 }
 
 .logo {

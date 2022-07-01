@@ -29,3 +29,7 @@
     font-size: 23px;
     cursor: pointer;
 } 
+
+.invalid-message {
+    color: rgb(202, 75, 75);
+}
