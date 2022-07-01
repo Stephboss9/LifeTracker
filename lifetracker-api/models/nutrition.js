@@ -3,7 +3,7 @@ const {BadRequestError, UnauthorizedError} = require("../utils/errors")
 class Nutrition {
 
     static async createNutrition(info) {
-        const requiredFields = ["name", "category", "calories", "image_url", "user_id", "created_at", "quantity"]
+        const requiredFields = ["name", "category", "calories", "imageUrl", "user_id", "quantity"]
         requiredFields.forEach(field => {
             if(!info.hasOwnProperty(field)){throw new BadRequestError(`Missing ${field} in request body`)}
         })
@@ -20,7 +20,7 @@ class Nutrition {
              )
              VALUES($1, $2, $3, $4, $5, $6)   
              RETURNING id, name, category, calories, user_id, created_at;
-           `  , [info.name, info.category, info.calories, info.image_url, info.user_id, created_at])
+           `  , [info.name, info.category, info.calories, info.imageUrl, info.user_id, created_at])
             const nutrition = nutritionResult.rows[0]
             return nutrition
     }
