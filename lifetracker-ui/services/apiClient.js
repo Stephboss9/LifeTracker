@@ -13,7 +13,7 @@ class ApiClient {
 
     }
 
-    async request (endpoint, userInfo){
+    async request (endpoint, userInfo, id){
        //handles login requests
        
         if(endpoint ==='login') {
@@ -76,7 +76,8 @@ class ApiClient {
                     },
                     headers: {
                         "content-type": `application/json`,
-                        "authentication": `Bearer ${userInfo}`
+                        "authentication": `Bearer ${userInfo}`,
+                        "userId": '${id}'
                     }
                 }
                 
@@ -93,7 +94,8 @@ class ApiClient {
                 let response = await axios.get(`http://localhost:3001/nutrition`, {
                     headers: {
                         "content-type": `application/json`,
-                        "authentication": `Bearer ${userInfo}`
+                        "authentication": `Bearer ${userInfo}`,
+                        "userId": '${id}'
                     }
                 })
                     return response.data
@@ -129,13 +131,13 @@ class ApiClient {
         } else {return true}
     }
 
-    getNutrition = async (nutritionInfo) =>{
-        return await this.request("nutrition_get", this.token)
+    getNutrition = async (nutritionInfo, userId) =>{
+        return await this.request("nutrition_get", this.token, userId)
 
     }
 
-    pushNutrition = async (nutritionInfo) => {
-        return await this.request("nutrition_post",this.token)
+    pushNutrition = async (nutritionInfo, userId) => {
+        return await this.request("nutrition_post", this.token, userId)
 
     }
 
