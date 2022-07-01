@@ -36,7 +36,7 @@ function App() {
             <Route path= "/login" element={<LoginPage userLoggedIn = {userLoggedIn} setUserLoggedIn = {setUserLoggedIn}/>}/>
             <Route path= "/register" element={<RegisterPage setUserLoggedIn={setUserLoggedIn}/>}/>
             <Route path = "/activity" element = {<ActivityPage/>}/>
-            <Route path = "/nutrition/*" element = {<NutritionCard/>}/>
+            <Route path = "/nutrition/*" element = {<NutritionPage/>}/>
             <Route path = "/sleep" element = {<Sleep/>}/>
             <Route path= "*" element ={<NotFound/>}/> 
           </Routes>

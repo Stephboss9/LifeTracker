@@ -15,6 +15,7 @@ class ApiClient {
 
     async request (endpoint, userInfo){
        //handles login requests
+       
         if(endpoint ==='login') {
         try {
             let response = await axios.post(`http://localhost:3001/auth/${endpoint}`, {
@@ -63,7 +64,46 @@ class ApiClient {
                 return err
             }
         }
+        else if(endpoint = "nutrition_post"){
+            try {
+                let response = await axios.post(`http://localhost:3001/nutrition`, {
+                    nutrition: {
+                        imageUrl:userInfo.imageUrl,
+                        name:userInfo.name,
+                        category:userInfo.category,
+                        calories:userInfo.calories,
+                        createdAt:userInfo.createdAt
+                    },
+                    headers: {
+                        "content-type": `application/json`,
+                        "authentication": `Bearer ${userInfo}`
+                    }
+                }
+                
+                )
+                    this.setToken(response.data.token)
+                    return response.data
+            }catch (err) {
+                console.log(err)
+                return err;
+            }
+        }
+        else if(endpoint = "nutrition_get"){
+            try {
+                let response = await axios.get(`http://localhost:3001/nutrition`, {
+                    headers: {
+                        "content-type": `application/json`,
+                        "authentication": `Bearer ${userInfo}`
+                    }
+                })
+                    return response.data
+            }catch (err) {
+                console.log(err)
+                return err;
+            }
+        }
     }
+
     async login (userInfo){
        return await this.request("login", userInfo)
     }
@@ -88,6 +128,17 @@ class ApiClient {
             return false
         } else {return true}
     }
+
+    getNutrition = async (nutritionInfo) =>{
+        return await this.request("nutrition_get", this.token)
+
+    }
+
+    pushNutrition = async (nutritionInfo) => {
+        return await this.request("nutrition_post",this.token)
+
+    }
+
 }
 
 export default ApiClient
