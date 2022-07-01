@@ -16,12 +16,13 @@ export default function LoginForm({ setUserLoggedIn, userLoggedIn}) {
       }
 
     const handleOnLoginUser = async (currentUser) => {
-      setRefresh(!refresh)
       //get the reponse from api after logging in
       let userResponse = await loginUser(currentUser)
       //if valid credentials were used, navigate to activity page, else dont
       if (userResponse.hasOwnProperty('user')){setUserLoggedIn(true);setCorrectInfo(true)
       }else {false; setCorrectInfo(null);}
+      setRefresh(!refresh)
+
 
        console.log("currentUser in LoginForm is: ", userResponse)
     }

@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
 import "./NutritionForm.css"
 import { useNutritionContext } from '../../../contexts/nutrition'
+import { useAuthContext } from '../../../contexts/auth'
 
 export default function NutritionForm({name, calories, imageUrl, category, quantity}) {
     const {refresh, setRefresh, pushNutrition} = useNutritionContext()
-    const [nutritionForm, setNutritionForm] = useState({name:"", category:"", quantity:0, imageUrl:"",calories:0})
+    const {user} = useAuthContext()
+    const [nutritionForm, setNutritionForm] = useState({name:"", category:"", quantity:0, imageUrl:"",calories:0, user_id:user.id})
 
    const handleOnSubmitNutritionForm = (nutritionForm) => {
-        pushNutrition(nutritionForm)
         setRefresh(!refresh)
+        console.log("IN NUTRITION FORM, USER: ", user, "user id", user.id)
+        pushNutrition(nutritionForm)
    }
 
    const handleOnInputChange = (event) => {

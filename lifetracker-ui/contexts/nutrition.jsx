@@ -17,7 +17,7 @@ export const NutritionContextProvider = ({children}) => {
     const {user} = useAuthContext()
 
     const pushNutrition = (nutritionInfo) => {
-        client.pushNutrition(nutritionInfo)
+        client.pushNutrition(nutritionInfo, user.id)
     }
     useEffect(async () => {
         if(user) {

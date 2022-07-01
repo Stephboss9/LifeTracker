@@ -21,7 +21,7 @@ export const AuthContextProvider = ({children}) => {
         return await client.fetchUserFromToken()
     }
 
-    const  loginUser = async (user)=> {
+    const loginUser = async (user)=> {
         let currentUser = await client.login(user)
         console.log("currentUser in auth context is: ", currentUser)
         return currentUser

@@ -20,6 +20,7 @@ nutritionRouter.get("/", async (req, res, next) => {
 
 nutritionRouter.post("/", async (req, res, next) => {
     try {
+        console.log(req.body)
         const nutrition  = await Nutrition.createNutrition(req.body)
         return res.status(201).json({"nutrition":nutrition})
     }catch (err){

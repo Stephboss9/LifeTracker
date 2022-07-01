@@ -25,6 +25,7 @@ class ApiClient {
                 "password":userInfo.password
             })
                 this.setToken(response.data.token)
+                console.log("User Login Response: ", response.data)
                 return response.data
         }catch (err) {
             console.log(err)
@@ -42,7 +43,8 @@ class ApiClient {
             }).then (response => {
                 console.log("User registered succesfully")
                 console.log(response.data)
-                this.login({"email": userInfo.email, "password":userInfo.password})
+                const loginInfo = {email:userInfo.email, password:userInfo.password}
+                this.login(loginInfo)
                 return response.data
                 //login the user at the same time
             }). catch (err => {
@@ -69,14 +71,15 @@ class ApiClient {
         else if(endpoint === "nutrition_post"){
             try {
                 let response = await axios.post(`http://localhost:3001/nutrition`, {
-                    nutrition: {
+                    
                         imageUrl:userInfo.imageUrl,
                         name:userInfo.name,
                         category:userInfo.category,
                         calories:userInfo.calories,
-                        quantity:userInfo.quantity
-                    },
-                }
+                        quantity:userInfo.quantity,
+                        user_id:id
+                    }
+           
                 
                 )
                     this.setToken(response.data.token)
@@ -108,11 +111,9 @@ class ApiClient {
        return await this.request("login", userInfo)
     }
 
-     signup (userInfo){
-        this.request("register", userInfo)
-        if(this.currentUser != null) {
-            console.log(this.currentUser)
-        }
+     async signup (userInfo){
+        return await this.request("register", userInfo)
+      
     }
     async fetchUserFromToken () {
        return await this.request("me", this.token)
