@@ -10,6 +10,7 @@ import NotFound from 'components/NotFound/NotFound';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import {AuthContextProvider,useAuthContext}  from '../../../contexts/auth';
 import {NutritionContextProvider, useNutritionContext} from "../../../contexts/nutrition"
+import AccessForbidden from 'components/AccessForbidden/AccessForbidden';
 import Sleep from 'components/Sleep/Sleep';
 import { useState } from 'react';
 import './App.css';
@@ -39,9 +40,10 @@ function App() {
             <Route path = "/" element ={<LandingPage  userLoggedIn = {userLoggedIn} setUserLoggedIn = {setUserLoggedIn}/>}/> 
             <Route path= "/login" element={<LoginPage userLoggedIn = {userLoggedIn} setUserLoggedIn = {setUserLoggedIn}/>}/>
             <Route path= "/register" element={<RegisterPage setUserLoggedIn={setUserLoggedIn}/>}/>
-            <Route path = "/activity" element = {<ActivityPage/>}/>
-            <Route path = "/nutrition/*" element = {<NutritionOverview/>}/>
-            <Route path = "/sleep" element = {<NutritionForm/>}/>
+            <Route path = "/exercise" element = {userLoggedIn?<ActivityPage/>:<AccessForbidden/>}/>
+            <Route path = "/activity" element = {userLoggedIn?<ActivityPage/>:<AccessForbidden/>}/>
+            <Route path = "/nutrition/*" element = {userLoggedIn?<NutritionPage/>:<AccessForbidden/>}/>
+            <Route path = "/sleep" element = {userLoggedIn?<Sleep/>:<AccessForbidden/>}/>
             <Route path= "*" element ={<NotFound/>}/> 
           </Routes>
         </BrowserRouter>

@@ -7,7 +7,6 @@ class Nutrition {
         requiredFields.forEach(field => {
             if(!info.hasOwnProperty(field)){throw new BadRequestError(`Missing ${field} in request body`)}
         })
-        const created_at = new Date().toISOString()
         const nutritionResult = await db.query(
             `
             INSERT INTO nutrition (
@@ -15,12 +14,10 @@ class Nutrition {
             category,
             calories,
             image_url,
-            user_id,
-            created_at
-             )
-             VALUES($1, $2, $3, $4, $5, $6)   
+            user_id             )
+             VALUES($1, $2, $3, $4, $5)   
              RETURNING id, name, category, calories, user_id, created_at;
-           `  , [info.name, info.category, info.calories, info.imageUrl, info.user_id, created_at])
+           `  , [info.name, info.category, info.calories, info.imageUrl, info.user_id])
             const nutrition = nutritionResult.rows[0]
             return nutrition
     }

@@ -44,7 +44,7 @@ class ApiClient {
                 console.log("User registered succesfully")
                 console.log(response.data)
                 const loginInfo = {email:userInfo.email, password:userInfo.password}
-                this.login(loginInfo)
+                let currentUser = this.login(loginInfo)
                 return response.data
                 //login the user at the same time
             }). catch (err => {

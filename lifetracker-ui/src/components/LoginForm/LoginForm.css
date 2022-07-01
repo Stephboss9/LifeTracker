@@ -28,6 +28,7 @@
     width:400px;
     font-size: 23px;
     cursor: pointer;
+    border: none;
 } 
 
 .invalid-message {

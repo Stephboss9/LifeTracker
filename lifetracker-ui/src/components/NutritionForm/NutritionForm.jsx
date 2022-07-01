@@ -2,15 +2,21 @@ import React, { useState } from 'react'
 import "./NutritionForm.css"
 import { useNutritionContext } from '../../../contexts/nutrition'
 import { useAuthContext } from '../../../contexts/auth'
+import { Link } from 'react-router-dom'
 
 export default function NutritionForm({name, calories, imageUrl, category, quantity}) {
     const {refresh, setRefresh, pushNutrition} = useNutritionContext()
     const {user} = useAuthContext()
-    const [nutritionForm, setNutritionForm] = useState({name:"", category:"", quantity:0, imageUrl:"",calories:0, user_id:user.id})
+    const [nutritionForm, setNutritionForm] = useState({name:"", category:"", quantity:0, imageUrl:"",calories:0, user_id:user?.id})
+
+
 
    const handleOnSubmitNutritionForm = (nutritionForm) => {
         setRefresh(!refresh)
+        let user_id = "user_id"
         console.log("IN NUTRITION FORM, USER: ", user, "user id", user.id)
+        let id = user?.id
+        setNutritionForm[{...nutritionForm, [user_id]: id}]
         pushNutrition(nutritionForm)
    }
 
@@ -46,9 +52,11 @@ export default function NutritionForm({name, calories, imageUrl, category, quant
         <div className='nutrition-field'>
         <input className='form-input' placeholder = "place image url here" name = "imageUrl" type = "text"  onChange = {handleOnInputChange} value = {nutritionForm.imageUrl}/>
         </div>
-        <button type = "button" className='submit-nutrition' onClick={()=> {
+        <Link to='/nutrition'><button type = "button" className='submit-nutrition' onClick={()=> {
+            setRefresh(!refresh)
             handleOnSubmitNutritionForm(nutritionForm)
-        }}>Save</button>
+            setRefresh(!refresh)
+        }}>Save</button></Link>
         {console.log("nutrition form is:", nutritionForm)}
     </form>
   )

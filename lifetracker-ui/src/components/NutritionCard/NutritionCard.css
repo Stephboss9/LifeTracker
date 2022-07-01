@@ -32,10 +32,11 @@
     height: 80px;
 }
 
-.nutrition-category, .nutrition-name, .nutrition-calories, .nutrition-date {
+.nutrition-category, .nutrition-name, .nutrition-calories, .nutrition-date, .nutrition-quantity{
     margin-top: 15px;
     flex: .5 .5;
     font-size: 15px;
+    font-weight: 500;
 }
 .nutrition-name {
     font-size: 25px;
@@ -50,5 +51,16 @@
     width: 100%;
     display: flex;
     justify-content: space-between
+}
+
+
+.nutrition-createdAt {
+    padding: 10px 10px;
+    border: 1px solid var(--border-color);
+    margin-right:5px;
+}
+
+.nutrition-category {
+    margin-left: 10px;
 }
 

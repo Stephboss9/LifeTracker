@@ -2,11 +2,17 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-top: 100px;
-    gap: 40px;
+    gap: 20px;
     align-items: center;
     width: 100vw;
     height: 1300px;
+    font-family: 'Trispace', sans-serif;
+}
+
+.page-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .nutrition-page-wrapper {

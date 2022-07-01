@@ -5,7 +5,7 @@ import { useAuthContext } from '../../../contexts/auth'
 
 
 export default function RegistrationForm({setUserLoggedIn}) {
-  const {signupUser, user}= useAuthContext()
+  const {signupUser, user, setUser, setRefresh, refresh}= useAuthContext()
 
   const [registrationForm, setRegistrationForm] = useState({email:"", userName:"", firstName:"", lastName:"", password:"", confirm:""})
   const [passwordsMatch, setPasswordsMatch] = useState(null)
@@ -14,8 +14,11 @@ export default function RegistrationForm({setUserLoggedIn}) {
     console.log(registrationForm)
   }
 
-  const handleOnRegistrateUser = (user) => {
-      signupUser(user)
+  const handleOnRegistrateUser = async (user) => {
+      let userInfo = await signupUser(user)
+      console.log("New Registered IUser", userInfo)
+      setRefresh(!refresh)
+
   }
   const checkPasswords = (registrationForm) => { 
     console.log("passwords check", registrationForm.password, registrationForm.confirm)

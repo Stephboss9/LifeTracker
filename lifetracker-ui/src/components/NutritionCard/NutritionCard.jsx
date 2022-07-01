@@ -1,8 +1,10 @@
 import React from 'react'
 import "./NutritionCard.css"
+import moment from "moment"
 
 
 export default function NutritionCard({imageUrl, name, calories, category, createdAt, quantity}) {
+
   return (
     <div className='nutrition-card'>
         <div className='food-image-container'>
@@ -20,8 +22,8 @@ export default function NutritionCard({imageUrl, name, calories, category, creat
            </div>
         </div>
         <div className='nutrition-footer-info'>
-                <span className='nutrition-category'>: {category}</span>
-                <span className='nutrition-category'>: {createdAt}</span>
+                <span className='nutrition-category'>{category}</span>
+                <span className='nutrition-createdAt'>{moment(createdAt).format('LT')}</span>
 
            </div>
     </div>

@@ -1,0 +1,43 @@
+.activity-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 100px;
+    gap: 40px;
+    align-items: center;
+    width: 100vw;
+    height: 1300px;
+}
+
+.nutrition-page-wrapper {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.nutrition-page-title {
+    justify-self: center;
+    font-size: 35px;
+}
+
+.header-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.activity-btn {
+    background: transparent;
+    margin-right: 15px;
+    padding: 15px 25px;
+    color: var(--pure-white);
+    border: 1px solid var(--pure-white);
+    cursor: pointer;
+}
+
+.nothing-message {
+    margin-top: 20px;
+}

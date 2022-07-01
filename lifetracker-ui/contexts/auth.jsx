@@ -15,20 +15,19 @@ export const AuthContextProvider = ({children}) => {
     const [initialized, setInitialized] = useState(false)
     const [isProcessing, setIsProcessing] = useState(false)
     const [error, setError] = useState(null)
-    
+    let currentUser = null
 
     const fetchUserFromToken = async  ()=> {
         return await client.fetchUserFromToken()
     }
 
     const loginUser = async (user)=> {
-        let currentUser = await client.login(user)
+       currentUser = await client.login(user)
         console.log("currentUser in auth context is: ", currentUser)
         return currentUser
     }
     const signupUser = async (user)=> {
-       let currentUser = await client.signup(user)
-        return currentUser
+      return await client.signup(user)
     }
     
     const logoutUser = async()=> {
@@ -45,6 +44,7 @@ export const AuthContextProvider = ({children}) => {
             setError(null)
             try {
                 setUser(await fetchUserFromToken())
+                console.log("User From token", user)
                 console.log("user in auth context hok is: ", user)
                 setError(null)
             }catch(err){
@@ -54,7 +54,7 @@ export const AuthContextProvider = ({children}) => {
             setInitialized(true)
             setIsProcessing(false)
         }
-    },[refresh, setRefresh])
+    },[refresh, setRefresh, setUser])
 
 
     

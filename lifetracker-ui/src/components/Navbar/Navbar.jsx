@@ -22,9 +22,9 @@ export default function Navbar({userLoggedIn, setUserLoggedIn}) {
         <div className='links'>
           <Link to = "/activity" className = "link" ><span className = "nav-link" href='#s'>Activity</span></Link>
           <Link to = "/exercise" className = "link" ><span className = "nav-link" href='#s'>Exercise</span></Link> 
-          <Link to = "/nutrition/*" className = "link" ><span className = "nav-link" href='#s'>Nutrition</span></Link>
+          <Link to = "/nutrition" className = "link" ><span className = "nav-link" href='#s'>Nutrition</span></Link>
           <Link to = "/sleep" className = "link" ><span className = "nav-link" href='#s'>Sleep</span></Link> 
-          {!userLoggedIn?<Link to = "/login" className = "link" ><span className = "nav-link" href='#s'>Login</span></Link>:
+          {!userLoggedIn?<Link to = "/login" className = "link login" ><span className = "nav-link button" href='#s'>Login</span></Link>:
           <Link to = "/"  className = "link" > <span onClick = {() => 
           {setUserLoggedIn(false);
           logoutUser()

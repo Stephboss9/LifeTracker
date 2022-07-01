@@ -15,22 +15,15 @@ export default function NutritionPage() {
     
     
     <div className='nutrition-page'>
+    <div className = "page-header"><h1 className='nutrition-header'>Nutrition</h1></div>
       <Routes>
-        <Route path='/nutrition' element = {NutritionOverview}/>
-        <Route path='/nutrition/create' element = {NutritionNew}/>
-        <Route path='/nutrition/id/:nutritionId' element = {NutritionDetail}/>
-        <Route path='*' element = {NotFound}/>
+        <Route path='/' element = {<NutritionOverview/>}/>
+        <Route path='/create' element = {<NutritionNew/>}/>
+        <Route path='/id/:nutritionId' element = {<NutritionDetail/>}/>
+        <Route path='*' element = {<NotFound/>}/>
       </Routes>
       
-      <div className='nutrition-page-wrapper'>
-        <span className='nutrition-page-title'>Acitivity Feed</span>
-        <div className='header-buttons'>
-          <Link to="/"><button className='activity-btn' type = "button"> Add Exercise</button></Link>
-          <Link to = "/"><button className='activity-btn'  type = "button"> Log Sleep</button></Link>
-          <Link to = "/nutrition/create"><button className='activity-btn nutrition'  type = "button">Record Nutrition</button></Link>
-        </div>
-      </div>
-      <h1 className='nothing-message'>Nothing Here Yet...</h1>
+     
     </div>
   )
 }
