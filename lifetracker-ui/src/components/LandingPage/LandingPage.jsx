@@ -18,7 +18,6 @@ export default function LandingPage({userLoggedIn, setUserLoggedIn}) {
         <div className='cta'>
           <h1>LifeTracker</h1>
           <h4>Helping you get in and stay in shape</h4>
-          {!userLoggedIn?<Link to = "/register"  className = "link" > <button className = "nav-link sign-up" href='#s'>Sign Up</button></Link>:null}
         </div>
         <img src={fitness2} className = "hero-img"/>
       </div>

@@ -31,6 +31,6 @@
     border: none;
 } 
 
-.invalid-message {
+.error {
     color: rgb(202, 75, 75);
 }

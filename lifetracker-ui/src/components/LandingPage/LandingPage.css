@@ -74,12 +74,3 @@
     height: 50px;
 }
 
-.sign-up {
-    padding: 15px 25px;
-    background: #00c98e;
-    color: var(--pure-white);
-    border-radius: 5px;
-    margin-top: 30px;
-    cursor: pointer;
-    border: none;
-}
