@@ -1,18 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import "./ActivityPage.css"
+import {useActivityContext} from "../../../contexts/activity"
+import { useAuthContext } from '../../../contexts/auth'
+import Loading from "../Loading/Loading"
+import ActivityFeed from 'components/ActivityFeed/ActivityFeed'
+
 export default function ActivityPage() {
+  const {activity, refresh, setRefresh} = useActivityContext()
+  const {isProcessing} = useAuthContext
+  useEffect(() => {
+    setRefresh(!refresh)
+  },[])
+  
+
   return (
     <div className='activity-page'>
-       <div className='nutrition-page-wrapper'>
+    {isProcessing?<Loading/>:<div className='nutrition-page-wrapper'>
         <span className='nutrition-page-title'>Acitivity Feed</span>
         <div className='header-buttons'>
           <Link to="/*"><button className='activity-btn' type = "button"> Add Exercise</button></Link>
           <Link to = "/"><button className='activity-btn'  type = "button"> Log Sleep</button></Link>
           <Link to = "/nutrition/create"><button className='activity-btn nutrition'>Record Nutrition</button></Link>
         </div>
-      </div>
-      <h1 className='nothing-message'>Nothing Here Yet...</h1>
+      </div> }
+      {console.log(activity.nutrition.calories.perCategory)}
+    {activity?<ActivityFeed totalCaloriesPerday={activity.nutrition.calories.perDay} avgCaloriesPerCategory={activity.nutrition.calories.perCategory}/>:null}
     </div>
   )
 }

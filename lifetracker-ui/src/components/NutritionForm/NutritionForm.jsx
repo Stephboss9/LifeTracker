@@ -22,7 +22,6 @@ export default function NutritionForm({name, calories, imageUrl, category, quant
 
    const handleOnInputChange = (event) => {
     setNutritionForm({ ...nutritionForm, [event.target.name]: event.target.value })
-    console.log(nutritionForm)
    }
    
   return (
@@ -57,7 +56,6 @@ export default function NutritionForm({name, calories, imageUrl, category, quant
             handleOnSubmitNutritionForm(nutritionForm)
             setRefresh(!refresh)
         }}>Save</button></Link>
-        {console.log("nutrition form is:", nutritionForm)}
     </form>
   )
 }

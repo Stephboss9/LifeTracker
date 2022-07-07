@@ -1,6 +1,5 @@
 import React from "react"
 import { createContext, useEffect, useState, useContext } from "react"
-import {API_BASE_URL} from "../constants"
 
 import apiClient  from "../services/apiClient"
 
@@ -23,7 +22,6 @@ export const AuthContextProvider = ({children}) => {
 
     const loginUser = async (user)=> {
        currentUser = await client.login(user)
-        console.log("currentUser in auth context is: ", currentUser)
         return currentUser
     }
     const signupUser = async (user)=> {
@@ -37,24 +35,22 @@ export const AuthContextProvider = ({children}) => {
     useEffect(async () => {
         console.log("USE EFFECT HAS BEEN CALLED")
         let currentToken = window.localStorage.getItem("lifetracker_token")
-        console.log("currentToken in auth", currentToken)
+        console.log("currentToken in auth context useEffect", currentToken)
         if(currentToken) {
             client.setToken(currentToken)
             setIsProcessing(true)
             setError(null)
             try {
                 setUser(await fetchUserFromToken())
-                console.log("User From token", user)
-                console.log("user in auth context hok is: ", user)
+
                 setError(null)
             }catch(err){
                 setError(err)
-                console.log("current error in auth", err)
             }
             setInitialized(true)
             setIsProcessing(false)
         }
-    },[refresh, setRefresh, setUser])
+    },[refresh])
 
 
     

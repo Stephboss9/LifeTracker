@@ -1,0 +1,19 @@
+.summary-stat {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 200px;
+    width: 300px;
+    flex-wrap: wrap;
+    border: 1px solid var(--pure-white);
+    font-family: 'Prompt', sans-serif;
+    background: rgb(255, 255, 255);
+    border-radius: 6px;
+
+}
+
+.statistics {
+    display: flex;
+    justify-content: space-between;
+}

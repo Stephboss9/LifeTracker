@@ -9,14 +9,15 @@ const ActivityContext = createContext()
 
 export const ActivityContextProvider = ({children}) => {
     const client = new ApiClient()
+    const [refresh, setRefresh] = useState(false)
     const [activity, setActivity] = useState(null)
     const [initialized, setInitialized] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
-    const [ user] = useAuthContext()
-    const authValue = {activity, initialized, isLoading, error, user}
+    const {user} = useAuthContext()
 
     useEffect(async () => {
+        console.log("Current user in Activity Context: ", user)
         if(user) {
             setIsLoading(true)
             setError(null)
@@ -27,9 +28,10 @@ export const ActivityContextProvider = ({children}) => {
         setIsLoading(false)
         setInitialized(true)
 
-    }, []) 
+    }, [refresh]) 
 
-    
+    const authValue = {activity, initialized, isLoading, error, user, refresh, setRefresh}
+
     
     return (
         
@@ -39,4 +41,4 @@ export const ActivityContextProvider = ({children}) => {
     )
 }
 
-export const useActivityContext = ()=> (useContext(ActivityContext))
+export const useActivityContext = ()=> {return useContext(ActivityContext)}

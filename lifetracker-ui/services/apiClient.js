@@ -64,8 +64,7 @@ class ApiClient {
                 "firstName":userInfo.firstName,
                 "lastName":userInfo.lastName
             }).then (response => {
-                console.log("User registered succesfully")
-                console.log(response.data)
+                console.log("User registered succesfully", response.data)
                 const loginInfo = {email:userInfo.email, password:userInfo.password}
                 let currentUser = this.login(loginInfo)
                 return response.data
@@ -84,7 +83,6 @@ class ApiClient {
                         "authentication": `Bearer ${userInfo}`
                     }
                 })
-                console.log("User Logged in succesfully", response.data)
                 return response.data
             } catch (err)  {
                 console.log(err)
@@ -121,7 +119,6 @@ class ApiClient {
                         "user_id": `${id}`
                     }
                 })                   
-                     console.log("products for currentUser", response.data)
                     return response.data
             }catch (err) {
                 console.log(err)
@@ -133,14 +130,14 @@ class ApiClient {
                 let response = await axios.get(`http://localhost:3001/${endpoint}`, {
                     headers: {
                         "content-type": `application/json`,
-                        "user_id": `${userInfo.id}`
+                        "user_id": `${id}`
                     }
                 })    
-                    console.log("activity", response)               
-                    return response.data
+                    console.log(`Activity for user with id: ${id}`, response.data)               
+                    return {activities:response.data, error:null}
             }catch (err) {
                 console.log(err)
-                return err;
+                return {activities:null, error:err}
             }
         }
     }
@@ -159,7 +156,6 @@ class ApiClient {
 
    logout(){
         this.setToken("")
-        console.log("current token in api client:", this.token)
         location.assign(PAGE_URL)
     }
 
@@ -179,7 +175,7 @@ class ApiClient {
 
     }
     getActivity= async (user) => {
-        return await this.request("activity", user )
+        return await this.request("activity", null, user.id )
     }
 
     
