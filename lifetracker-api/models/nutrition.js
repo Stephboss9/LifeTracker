@@ -14,7 +14,8 @@ class Nutrition {
             category,
             calories,
             image_url,
-            user_id             )
+            user_id)
+
              VALUES($1, $2, $3, $4, $5)   
              RETURNING id, name, category, calories, user_id, created_at;
            `  , [info.name, info.category, info.calories, info.imageUrl, info.user_id])
