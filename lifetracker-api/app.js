@@ -4,6 +4,7 @@ const cors = require("cors")
 const appTest = require("./app.test")
 const auth = require("./routes/auth")
 const nutrition = require("./routes/nutrition")
+const activity = require("./routes/activity")
 const { NotFoundError } = require('./utils/errors')
 
 
@@ -19,6 +20,7 @@ app.use("/tests", appTest)
 
 app.use("/auth", auth)
 app.use("/nutrition", nutrition)
+app.use("/activity", activity )
 
 app.get("/", (req, res, next) => {
     res.status(200).json({"ping":"Watsup Doc"})

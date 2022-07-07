@@ -48,7 +48,6 @@ class User {
 
 
         const hashedPW = await bcrypt.hash(credentials.password, BCRYPT_WORK_FACTOR)
-        const created_at = new Date().toISOString()
 
         const result = await db.query(
             `
@@ -57,13 +56,11 @@ class User {
             password,
             first_name,
             last_name,
-            email,
-            created_at,
-            updated_at
+            email
              )
-             VALUES($1, $2, $3, $4, $5, $6, $7)   
+             VALUES($1, $2, $3, $4, $5)   
              RETURNING id, username, first_name, last_name, email, created_at;
-           `  , [credentials.userName, hashedPW, credentials.firstName, credentials.lastName, credentials.email, created_at, created_at])
+           `  , [credentials.userName, hashedPW, credentials.firstName, credentials.lastName, credentials.email])
                 console.log("yo")
             const user = result.rows[0]
             return User.makePublicUser(user)
