@@ -18,6 +18,29 @@ class ApiClient {
     async request (endpoint, userInfo, id){
        //handles login requests
        
+
+          //handles login requests
+
+       /*
+       const url = `${this.remoteHostUrl}/${endpoint}`
+       const headers =  {
+           "Content-Type": "application/json"
+       }
+
+       if (this.token) {
+        headers["Authorization"] = `Bearer ${this.token}`
+       }
+
+       try {
+        const res = await axios({url, method, data, headers})
+            return res.data
+
+       } catch(error) {
+            console.log("Error caught in ApiClient", error)
+            const message = err?.response?.data?.error?.message
+
+       }
+       */
         if(endpoint ==='login') {
         try {
             let response = await axios.post(`http://localhost:3001/auth/${endpoint}`, {
@@ -140,6 +163,8 @@ class ApiClient {
         return await this.request("nutrition_post", nutritionInfo, userId)
 
     }
+
+    
 
 }
 
