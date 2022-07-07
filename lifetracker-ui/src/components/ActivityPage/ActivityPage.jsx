@@ -19,12 +19,11 @@ export default function ActivityPage() {
     {isProcessing?<Loading/>:<div className='nutrition-page-wrapper'>
         <span className='nutrition-page-title'>Acitivity Feed</span>
         <div className='header-buttons'>
-          <Link to="/*"><button className='activity-btn' type = "button"> Add Exercise</button></Link>
-          <Link to = "/"><button className='activity-btn'  type = "button"> Log Sleep</button></Link>
+          <Link to="/*"><button className='activity-btn exercise' type = "button"> Add Exercise</button></Link>
+          <Link to = "/"><button className='activity-btn sleep'  type = "button"> Log Sleep</button></Link>
           <Link to = "/nutrition/create"><button className='activity-btn nutrition'>Record Nutrition</button></Link>
         </div>
       </div> }
-      {console.log(activity.nutrition.calories.perCategory)}
     {activity?<ActivityFeed totalCaloriesPerday={activity.nutrition.calories.perDay} avgCaloriesPerCategory={activity.nutrition.calories.perCategory}/>:null}
     </div>
   )

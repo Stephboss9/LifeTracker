@@ -6,6 +6,7 @@
     gap: 40px;
     align-items: center;
     width: 100vw;
+    font-family: 'Trispace', sans-serif;
     height: 1300px;
 }
 
@@ -32,12 +33,30 @@
 .activity-btn {
     background: transparent;
     margin-right: 15px;
-    padding: 15px 25px;
+    padding: 15px 30px;
     color: var(--pure-white);
     border: 1px solid var(--pure-white);
     cursor: pointer;
+    font-size: 20px;
+
+}
+
+.activity-btn.exercise {
+    color: rgb(64, 227, 64);
+    border:1px solid rgb(64, 227, 64); 
+}
+
+.activity-btn.sleep {
+    color: var(--accent-orange);
+    border:1px solid var(--accent-orange); 
+}
+
+.activity-btn.nutrition {
+    color: aqua;
+    border: 1px solid aqua;
 }
 
 .nothing-message {
     margin-top: 20px;
 }
+

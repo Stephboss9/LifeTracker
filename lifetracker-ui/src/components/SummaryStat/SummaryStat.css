@@ -8,10 +8,23 @@
     flex-wrap: wrap;
     border: 1px solid var(--pure-white);
     font-family: 'Prompt', sans-serif;
-    background: rgb(255, 255, 255);
+    background: rgb(66, 223, 255);
     border-radius: 6px;
+    margin-bottom: 10px;
+    border: none;
+    color: var(--pure-white);
+    font-family: 'Trispace', sans-serif;
+    font-size: 20px;
 
 }
+
+.primary-stat, .substat {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width:100%
+}
+
 
 .statistics {
     display: flex;
