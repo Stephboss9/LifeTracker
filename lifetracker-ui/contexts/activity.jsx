@@ -3,21 +3,29 @@ import { createContext } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import {useAuthContext} from "./auth"
+import ApiClient from "../services/apiClient";
 
 const ActivityContext = createContext()
 
 export const ActivityContextProvider = ({children}) => {
+    const client = new ApiClient()
     const [activity, setActivity] = useState(null)
     const [initialized, setInitialized] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
     const [ user] = useAuthContext()
+    const authValue = {activity, initialized, isLoading, error, user}
 
-    useEffect(() => {
+    useEffect(async () => {
         if(user) {
             setIsLoading(true)
             setError(null)
+            const {activities, error} = await client.getActivity(user)
+            setActivity(activities);
+            setError(error)
         }
+        setIsLoading(false)
+        setInitialized(true)
 
     }, []) 
 
@@ -25,7 +33,9 @@ export const ActivityContextProvider = ({children}) => {
     
     return (
         
-
+        <ActivityContext.Provider value = {authValue} >
+        <>{children}</>
+        </ActivityContext.Provider>
     )
 }
 

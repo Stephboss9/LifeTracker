@@ -128,6 +128,21 @@ class ApiClient {
                 return err;
             }
         }
+        else if (endpoint == "activity"){
+            try {
+                let response = await axios.get(`http://localhost:3001/${endpoint}`, {
+                    headers: {
+                        "content-type": `application/json`,
+                        "user_id": `${userInfo.id}`
+                    }
+                })    
+                    console.log("activity", response)               
+                    return response.data
+            }catch (err) {
+                console.log(err)
+                return err;
+            }
+        }
     }
 
     async login (userInfo){
@@ -162,6 +177,9 @@ class ApiClient {
     pushNutrition = async (nutritionInfo, userId) => {
         return await this.request("nutrition_post", nutritionInfo, userId)
 
+    }
+    getActivity= async (user) => {
+        return await this.request("activity", user )
     }
 
     
