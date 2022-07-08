@@ -28,7 +28,7 @@ class Nutrition {
             throw new BadRequestError("no id provided")
         }
         let query = 'SELECT * FROM nutrition WHERE id = $1'
-        let result = await db.query(query, [id])
+        let result = await db.query(query, [Number.parseInt(id.nutritionId)])
 
         const nutrition = result.rows[0]
         if(nutrition){return nutrition}else {throw new BadRequestError("No food item was found with that id")}

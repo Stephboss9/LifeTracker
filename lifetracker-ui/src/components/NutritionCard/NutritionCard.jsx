@@ -23,7 +23,7 @@ export default function NutritionCard({imageUrl, name, calories, category, creat
         </div>
         <div className='nutrition-footer-info'>
                 <span className='nutrition-category'>{category}</span>
-                <span className='nutrition-createdAt'>{moment(createdAt).format('LT')}</span>
+                <span className='nutrition-createdAt'>Today at{moment(createdAt).format('LT')}</span>
 
            </div>
     </div>

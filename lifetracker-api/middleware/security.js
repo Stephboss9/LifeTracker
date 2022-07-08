@@ -21,6 +21,7 @@ const extractUserFromJwt = (req,res,next)=> {
         if (token) {
             console.log("hey")
             res.locals.user = validateToken(token)
+            console.log("res.locals.user", res.locals.user)
         }
         return next()
     } catch(error){

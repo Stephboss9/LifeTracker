@@ -83,6 +83,9 @@ class ApiClient {
 
         return await this.request({endpoint: `activity`, method: `GET`, data: null, id:userId} )
     }
+    getNutritionById = async (nutritionId) => {
+        return await this.request({endpoint: `nutrition/${nutritionId}`, method: "GET", data:{}})
+    }
 
     
 

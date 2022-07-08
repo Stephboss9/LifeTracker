@@ -30,10 +30,10 @@ nutritionRouter.post("/", async (req, res, next) => {
     }
 })
 
-nutritionRouter.get("/:nutritionId", security.requireAuthenticatedUser, permissions.authenticatedOwnsNutrition, async (req, res, next) => {
+nutritionRouter.get("/:nutritionId", async (req, res, next) => {
     try {
-        console.log(req.body)
-        const nutrition = res.locals.nutrition
+        const nutrition = await Nutrition.fetchNutritionById(req.params)
+        console.log("nutrition", nutrition)
         return res.status(200).json({"nutrition":nutrition})
     }catch (err){
         next(err)
