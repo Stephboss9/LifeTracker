@@ -5,22 +5,19 @@ const SECRET_KEY = process.env.SECRET_KEY || "25020a8ec773c1c0f8d998bd20bb500fb9
 const jwt = require("jsonwebtoken")
 const { UnauthorizedError } = require("./errors")
 
-function generateToken(user){
-    const token =  jwt.sign(user, SECRET_KEY)
-    return token
-}
+const generateToken = (user) => jwt.sign(user, SECRET_KEY, { expiresIn:"24h"})
 
-function validateToken(token, next){
-    jwt.verify(token, SECRET_KEY, (err,user) => {
-        if (err){
-            throw new UnauthorizedError("Invalid Token")
-        }else {
-            console.log("access token verified")
-            req.user = user
-            next()
-        }
-    })
+
+const  validateToken = (token) => {
+    try {
+        const decoded = jwt.verify(token, SECRET_KEY)
+        return decoded
+    }
+    catch(err){
+        return {}
+    }
+}
     
-}
+    
 
-module.exports = {generateToken, validateToken}
+module.exports = {generateToken,validateToken}

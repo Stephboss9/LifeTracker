@@ -2,13 +2,15 @@ const express = require("express")
 const User = require("../models/user")
 const authRouter = express.Router()
 const {generateToken} = require("../utils/tokens")
-const authenticateToken = require("../middleware/security")
+const security = require("../middleware/security")
 
 
 
-authRouter.get("/me",authenticateToken ,(req, res, next) => {
+authRouter.get("/me", security.requireAuthenticatedUser ,async (req, res, next) => {
     try {
-        return res.status(201).json(req.user)
+        const user = res.locals.user
+        const publicUser = await User.makePublicUser(user)
+        return res.status(200).json({user: publicUser})
     }catch (err){
         next(err)
     }
@@ -29,8 +31,8 @@ authRouter.post("/register", async (req, res, next) => {
     try {
         console.log(req.body)
         const user = await User.register(req.body)
-        
-        return res.status(201).json({"user": {"email": `${user.email}`, "name": `${user.firstName}`}})
+        const token = generateToken(user)
+        return res.status(201).json({"user": {"email": `${user.email}`, "name": `${user.firstName}`}, "token":token})
     }catch (err){
         next(err)
     }

@@ -5,11 +5,13 @@ const {BadRequestError, UnauthorizedError} = require("../utils/errors")
 class User {
 
     static async makePublicUser(user) {
+    
         return {
             id:user.id,
             username:user.username,
-            firstName:user.first_name,
-            email:user.email
+            firstName:user.firstName,
+            email:user.email,
+            createdAt:user.created_at
         }
     }
 
