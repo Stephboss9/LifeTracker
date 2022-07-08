@@ -4,7 +4,7 @@
     display: flex;
     flex: row;
     height: 100px;
-    background-color: 3F4E4F
+    border-bottom: 1px solid var(--border-color);
 }
 
 .logo {

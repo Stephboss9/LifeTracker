@@ -8,7 +8,7 @@
     flex-wrap: wrap;
     border: 1px solid var(--pure-white);
     font-family: 'Prompt', sans-serif;
-    background: #00c98e;
+    background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
     border-radius: 6px;
     margin-bottom: 10px;
     border: var(--border-color);

@@ -16,8 +16,9 @@ export default function LandingPage({userLoggedIn, setUserLoggedIn}) {
     <div className='landing'>
       <div className='hero'>
         <div className='cta'>
-          <h1>LifeTracker</h1>
-          <h4>Helping you get in and stay in shape</h4>
+          <h1 className='landing-title'>LifeTracker</h1>
+          <h4 className='landing-title sub'>Helping you get in and stay in shape</h4>
+          <h4 className='landing-subtitle'>Get Started <Link className='login-link' to = "/login"><h4 className='landing-subtitle sub'>Here</h4></Link></h4>
         </div>
         <img src={fitness2} className = "hero-img"/>
       </div>

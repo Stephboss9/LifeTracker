@@ -60,7 +60,7 @@ export default function LoginForm({ setUserLoggedIn, userLoggedIn}) {
           >Login</button>
     </form>
       <div className='login-footer'>
-          <h4>Don't have an account? <Link className = "signUp-here" to = "/register"><span className='signUp-here'>Signup Here!</span></Link></h4>
+          <h4 className='question'>Don't have an account? <Link className = "signUp-here" to = "/register"><span className='signUp-here'>Signup Here!</span></Link></h4>
       </div>
     </div>
   )

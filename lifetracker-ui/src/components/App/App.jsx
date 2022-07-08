@@ -52,10 +52,10 @@ function App() {
             <Route path = "/" element ={<LandingPage  userLoggedIn = {userLoggedIn} setUserLoggedIn = {setUserLoggedIn}/>}/> 
             <Route path= "/login" element={<LoginPage userLoggedIn = {userLoggedIn} setUserLoggedIn = {setUserLoggedIn}/>}/>
             <Route path= "/register" element={<RegisterPage setUserLoggedIn={setUserLoggedIn}/>}/>
-            <Route path = "/exercise" element = {userLoggedIn?<ActivityPage/>:<AccessForbidden/>}/>
-            <Route path = "/activity" element = {userLoggedIn?<ActivityPage/>:<AccessForbidden/>}/>
-            <Route path = "/nutrition/*" element = {userLoggedIn?<NutritionPage/>:<AccessForbidden/>}/>
-            <Route path = "/sleep" element = {userLoggedIn?<Sleep/>:<AccessForbidden/>}/>
+            <Route path = "/exercise" element = {userLoggedIn?<ActivityPage/>:<LoginPage userLoggedIn = {userLoggedIn} setUserLoggedIn = {setUserLoggedIn}/>}/>
+            <Route path = "/activity" element = {userLoggedIn?<ActivityPage/>:<LoginPage userLoggedIn = {userLoggedIn} setUserLoggedIn = {setUserLoggedIn}/>}/>
+            <Route path = "/nutrition/*" element = {userLoggedIn?<NutritionPage/>:<LoginPage userLoggedIn = {userLoggedIn} setUserLoggedIn = {setUserLoggedIn}/>}/>
+            <Route path = "/sleep" element = {userLoggedIn?<Sleep/>:<LoginPage userLoggedIn = {userLoggedIn} setUserLoggedIn = {setUserLoggedIn}/>}/>
             <Route path= "*" element ={<NotFound/>}/> 
           </Routes>
         </BrowserRouter>

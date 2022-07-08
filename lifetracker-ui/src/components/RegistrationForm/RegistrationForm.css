@@ -8,7 +8,7 @@
     width: 700px;
     height: 900px;
     border: 1px solid var(--border-color);
-    color: #00c98e;
+    color: #989797;
     box-shadow: 0px 0px 8px 5px rgba(0, 0, 0, .15);
 
 }
@@ -85,12 +85,12 @@
     box-shadow: 0 0 10px #969696;
 }
 
-.login-here{
+.signup-here{
     color: #00c98e;;
     cursor: pointer;
     text-decoration: none;
-    font-size: 22px;
+    font-size: 18px;
 }
 .question {
-    font-size: 22px;
+    font-size: 18px;
 }
