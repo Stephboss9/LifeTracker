@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 
 export default function NutritionOverview() {
   const {nutritions} = useNutritionContext()
+  console.log("Nutritions array in nutritionOverview jsx", nutritions)
+  
 
   return (
     <div className='nutrition-overview-wrapper'>

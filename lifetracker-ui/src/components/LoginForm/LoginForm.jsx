@@ -2,6 +2,7 @@ import React from 'react'
 import "./LoginForm.css"
 import { useAuthContext } from '../../../contexts/auth'
 import { useState } from 'react'
+import ApiClient from '../../../services/apiClient'
 
 export default function LoginForm({ setUserLoggedIn, userLoggedIn}) {
 
@@ -9,22 +10,26 @@ export default function LoginForm({ setUserLoggedIn, userLoggedIn}) {
 
     const [LoginInfo, setLoginInfo] = useState({email:"", password:""})
 
-    const {user,setUser, setError, error, loginUser, refresh, setRefresh} = useAuthContext()
-
+    const {user, setError, error, loginUser, userChanged, setUserChanged} = useAuthContext()
+    let client = new ApiClient()
     const handleOnInputChange = (event) => {
         setLoginInfo({ ...LoginInfo, [event.target.name]: event.target.value })
       }
 
     const handleOnLoginUser = async (currentUser) => {
       //get the reponse from api after logging in
-      let userResponse = await loginUser(currentUser)
+      let {data, error} = await loginUser(currentUser)
+      setError(error)
+
+      if(data) {client.setToken(data.token)}
+      console.log("Login Response", data)
+
       //if valid credentials were used, navigate to activity page, else dont
-      if (userResponse.hasOwnProperty('user')){setUserLoggedIn(true);setCorrectInfo(true)
+      setUserChanged(!userChanged)
+
+      if (data){setUserLoggedIn(true);setCorrectInfo(true)
       }else {setCorrectInfo(false); console.log(userResponse.response.data.error.message);setError(userResponse.response.data.error.message)}
-      setRefresh(!refresh)
 
-
-       console.log("currentUser in LoginForm is: ", userResponse)
     }
   
   

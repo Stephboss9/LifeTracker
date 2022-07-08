@@ -10,6 +10,7 @@ export const AuthContextProvider = ({children}) => {
     let client = new apiClient()
     //define necessary states
     const [refresh, setRefresh] = useState(false)
+    const [userChanged, setUserChanged] = useState(false)
     const [user, setUser] = useState(null)
     const [initialized, setInitialized] = useState(false)
     const [isProcessing, setIsProcessing] = useState(false)
@@ -25,11 +26,16 @@ export const AuthContextProvider = ({children}) => {
         return currentUser
     }
     const signupUser = async (user)=> {
-      return await client.signup(user)
-    }
+        console.log("1")
+        return await client.signup(user)
+    
+   
+}
     
     const logoutUser = async()=> {
         client.logout()
+        setUser(null)
+        setUserChanged(!userChanged)
     }
 
     useEffect(async () => {
@@ -50,12 +56,12 @@ export const AuthContextProvider = ({children}) => {
             setInitialized(true)
             setIsProcessing(false)
         }
-    },[refresh])
+    },[userChanged])
 
 
     
 
-    const authValue = {user, setUser, initialized, setInitialized, isProcessing, setIsProcessing, error, setError, loginUser, signupUser, fetchUserFromToken, logoutUser, refresh, setRefresh}
+    const authValue = {userChanged, setUserChanged, user, setUser, initialized, setInitialized, isProcessing, setIsProcessing, error, setError, loginUser, signupUser, fetchUserFromToken, logoutUser, refresh, setRefresh}
 
     //check if jwt token exists
    

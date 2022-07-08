@@ -5,20 +5,20 @@ import { useAuthContext } from '../../../contexts/auth'
 
 
 export default function RegistrationForm({setUserLoggedIn}) {
-  const {signupUser, user, setUser, setRefresh, refresh}= useAuthContext()
+  const {signupUser, user, setUser, userChanged, setUserChanged, loginUser}= useAuthContext()
 
   const [registrationForm, setRegistrationForm] = useState({email:"", userName:"", firstName:"", lastName:"", password:"", passwordConfirm:""})
   const [passwordsMatch, setPasswordsMatch] = useState(null)
   const handleOnInputChange = (event) => {
     setRegistrationForm({ ...registrationForm, [event.target.name]: event.target.value })
-    console.log(registrationForm)
   }
 
   const handleOnRegistrateUser = async (user) => {
-      let userInfo = await signupUser(user)
-      console.log("New Registered IUser", userInfo)
-      setRefresh(!refresh)
-
+       
+        let userResponse =  await signupUser(user)
+        if(userResponse){loginUser(user)}
+       console.log("Registration Response", userResponse)
+     
   }
   const checkPasswords = (registrationForm) => { 
     console.log("passwords check", registrationForm.password, registrationForm.passwordConfirm)

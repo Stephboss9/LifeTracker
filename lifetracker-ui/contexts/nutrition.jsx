@@ -26,7 +26,7 @@ export const NutritionContextProvider = ({children}) => {
             setError(null)
             try {
                 setNutritions((await client.getNutrition(user.id)).nutritions)
-                console.log(nutritions)
+                console.log("nutritions array in Nutrition Contexty", nutritions)
                 setError(null)
             }catch(err){
                 setError(err)
@@ -34,7 +34,7 @@ export const NutritionContextProvider = ({children}) => {
         }
         setInitialized(true)
         setIsLoading(false)
-    },[user, refresh, setRefresh])
+    },[user])
 
 
     

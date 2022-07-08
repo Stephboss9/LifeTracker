@@ -8,8 +8,9 @@
     flex-wrap: wrap;
     border: 1px solid var(--pure-white);
     font-family: 'Prompt', sans-serif;
-    background: rgb(115, 195, 118);
+    background: rgb(66, 223, 255);
     border-radius: 6px;
+    border: none;
 
 }
 .nutrition-info-wrapper {

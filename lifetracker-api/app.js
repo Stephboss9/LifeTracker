@@ -9,6 +9,12 @@ const { NotFoundError } = require('./utils/errors')
 
 
 const app = express()
+const corsOptions = {
+    origin:true,
+    credentials:true
+}
+
+app.options('*', cors(corsOptions))
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");

@@ -14,7 +14,7 @@ export const ActivityContextProvider = ({children}) => {
     const [initialized, setInitialized] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState(null)
-    const {user} = useAuthContext()
+    const {user, userChanged} = useAuthContext()
 
     useEffect(async () => {
         console.log("Current user in Activity Context: ", user)
@@ -28,7 +28,7 @@ export const ActivityContextProvider = ({children}) => {
         setIsLoading(false)
         setInitialized(true)
 
-    }, [refresh]) 
+    }, [user, userChanged]) 
 
     const authValue = {activity, initialized, isLoading, error, user, refresh, setRefresh}
 

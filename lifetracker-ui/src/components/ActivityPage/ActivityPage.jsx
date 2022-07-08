@@ -8,10 +8,8 @@ import ActivityFeed from 'components/ActivityFeed/ActivityFeed'
 
 export default function ActivityPage() {
   const {activity, refresh, setRefresh} = useActivityContext()
-  const {isProcessing} = useAuthContext
-  useEffect(() => {
-    setRefresh(!refresh)
-  },[])
+  const {isProcessing} = useAuthContext()
+  console.log("activity", activity)
   
 
   return (

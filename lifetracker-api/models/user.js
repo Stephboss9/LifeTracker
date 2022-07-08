@@ -14,6 +14,7 @@ class User {
     }
 
     static async login(credentials){
+
         const requiredFields = ["email", "password"]
         requiredFields.forEach(field => {
             if(!credentials.hasOwnProperty(field)){throw new BadRequestError(`Missing ${field} in request body`)}
@@ -22,7 +23,6 @@ class User {
         if (credentials.email.indexOf('@') <= 0){
             throw new BadRequestError("Invalid email")
         }
-
         const currentUser = await User.fetchUserByEmail(credentials.email)
 
         if(currentUser) {
