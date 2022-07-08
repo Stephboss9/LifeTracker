@@ -1,6 +1,8 @@
 const express = require("express")
 const Nutrition = require("../models/nutrition")
 const { BadRequestError } = require("../utils/errors")
+const security = require("../middleware/security")
+const permissions = require("../middleware/permissions.jsx")
 const nutritionRouter = express.Router()
 
 
@@ -27,11 +29,10 @@ nutritionRouter.post("/", async (req, res, next) => {
     }
 })
 
-nutritionRouter.get("/:nutritionId", async (req, res, next) => {
+nutritionRouter.get("/:nutritionId", security.requireAuthenticatedUser, permissions.authenticatedOwnsNutrition, async (req, res, next) => {
     try {
         console.log(req.body)
-        const nutrition = await Nutrition.fetchNutritionById(req.params.nutritionId)
-        
+        const nutrition = res.locals.nutrition
         return res.status(200).json({"nutrition":nutrition})
     }catch (err){
         next(err)

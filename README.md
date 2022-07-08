@@ -682,16 +682,16 @@ Here are the pieces of functionality that should be built out for the backend:
     - [ ] In the `models/nutrition.js` file:
       - [ ] Implement the features outlined in the tests until they're all passing
     - [ ] Commit all work to `git`
-  - [ ] The **permissions** middleware
+  - [x] The **permissions** middleware
     - [ ] In the `middleware` directory, create two new files: `middleware/permissions.js` and `middleware/permissions.test.js`
-      - [ ] Though more functions will need to be added here as the number of resources grows, for now only 1 function needs to be created.
-      - [ ] The `authedUserOwnsNutrition` middleware function should:
-        - [ ] Probably be called after the `requireAuthenticatedUser` security middleware in any route's middleware pipeline
-        - [ ] Extract a parameter from the request endpoint that corresponds to the `id` of the nutrition instance
-        - [ ] Query the database for that nutrition instance
-        - [ ] Check that it is owned by the authenticated user
-          - [ ] If it doesn't, it should throw a `ForbiddenError` (`403` status code)
-          - [ ] If the nutrition instance does belong to the authed user, it should attach it to the `locals` property of the `response` as its `nutrition` property so that it doesn't need to be fetched again by the database (this isn't required, but is probably a good idea).
+      - [x] Though more functions will need to be added here as the number of resources grows, for now only 1 function needs to be created.
+      - [x] The `authedUserOwnsNutrition` middleware function should:
+        - [x] Probably be called after the `requireAuthenticatedUser` security middleware in any route's middleware pipeline
+        - [x] Extract a parameter from the request endpoint that corresponds to the `id` of the nutrition instance
+        - [x] Query the database for that nutrition instance
+        - [x] Check that it is owned by the authenticated user
+          - [x] If it doesn't, it should throw a `ForbiddenError` (`403` status code)
+          - [x] If the nutrition instance does belong to the authed user, it should attach it to the `locals` property of the `response` as its `nutrition` property so that it doesn't need to be fetched again by the database (this isn't required, but is probably a good idea).
     - [ ] In the `middleware/permissions.test.js` file:
       - [ ] Test the `authedUserOwnsNutrition` middleware function
         - [ ] Write test cases for:
