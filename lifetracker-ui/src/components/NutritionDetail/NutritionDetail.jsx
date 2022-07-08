@@ -27,3 +27,6 @@ export default function NutritionDetail() {
     </div>
   )
 }
+/**
+ * https://steph-lifetracker-app.herokuapp.com/
+ */

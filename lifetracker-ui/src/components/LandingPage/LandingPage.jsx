@@ -21,22 +21,7 @@ export default function LandingPage({userLoggedIn, setUserLoggedIn}) {
         </div>
         <img src={fitness2} className = "hero-img"/>
       </div>
-      <div className='activity-icons'>
-          <div className='activity-wrapper'> <img className = "activity-icon planner" src = {planner}></img> 
-          <h2 className='icon-sub'>Planning</h2>
-        </div>
-        <div className='activity-wrapper'>
-          <img className = "activity-icon food" src = {food}></img>
-          <h2 className='Food'>Food</h2>
-        </div>
-            <div className='activity-wrapper'> <img className = "activity-icon fitness" src = {fitnessIcon}></img> 
-            <h2 className='Fitness'>Fitness</h2>
-        </div>
-            <div className='activity-wrapper'>  <img className = "activity-icon rest" src = {rest}></img>
-            <h2 className='Rest'>Rest</h2>
-        </div>
-        
-        </div>
+     
     </div>
   )
 }

@@ -7,10 +7,18 @@
     width: 400px;
     flex-wrap: wrap;
     border: 1px solid var(--pure-white);
-    font-family: 'Prompt', sans-serif;
-    background: rgb(66, 223, 255);
+    font-family: 'Trispace', sans-serif;
+    background: #00c98e;
     border-radius: 6px;
     border: none;
+
+}
+
+.img-wrapper {
+    border-radius: 20px;
+    width: 90px;
+    margin-right: 40px;
+    background: white;
 
 }
 .nutrition-info-wrapper {
@@ -26,17 +34,19 @@
     justify-content: space-evenly;
     align-items: center;
     width: 95% ;
+    font-size: 25px;
 }
 
 .nutrition-image {
     width: 80px;
     height: 80px;
+    border-radius: 20px;
 }
 
 .nutrition-category, .nutrition-name, .nutrition-calories, .nutrition-date, .nutrition-quantity{
     margin-top: 15px;
     flex: .5 .5;
-    font-size: 15px;
+    font-size: 25px;
     font-weight: 500;
 }
 .nutrition-name {
@@ -45,14 +55,21 @@
 
 .food-image-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .nutrition-footer-info {
     width: 100%;
     display: flex;
-    justify-content: space-between
+    justify-content:space-around;
+    font-size: 18px;
+    align-items: center;
 }
+
 
 
 .nutrition-createdAt {
@@ -65,3 +82,7 @@
     margin-left: 10px;
 }
 
+.card-link {
+    text-decoration: none;
+    color: white;
+}

@@ -28,30 +28,32 @@ export default function NutritionForm({name, calories, imageUrl, category, quant
    
   return (
     <form className='nutrition-form'>
+            <h1 className='nutrition-title'>Record Nutrition</h1>
+
         <div className='nutrition-field'>
         <span className='nutrition-input-title'>Name</span>
 
-            <input className='form-input'  placeholder = "apples" name = "name" type = "text" onChange = {handleOnInputChange} value = {nutritionForm.name}/>
+            <input className='form-input nutrition'  placeholder = "apples" name = "name" type = "text" onChange = {handleOnInputChange} value = {nutritionForm.name}/>
         </div>
         <div className='nutrition-field'>
         <span className='nutrition-input-title'>Category</span>
-        <input className='form-input'  placeholder = "fruit" name = "category" type = "text"  onChange = {handleOnInputChange} value = {nutritionForm.category}/>
+        <input className='form-input nutrition'  placeholder = "fruit" name = "category" type = "text"  onChange = {handleOnInputChange} value = {nutritionForm.category}/>
         </div>
         <div className='nutrition-split-field'>
 
             <div className='nutrition-field'>
                 <span className='nutrition-input-title'>Quantity</span>
-                <input className='form-input'  placeholder = "2" name = "quantity" type = "number"  onChange = {handleOnInputChange} value = {nutritionForm.quantity}/>
+                <input className='form-input nutrition split'  placeholder = "2" name = "quantity" type = "number"  onChange = {handleOnInputChange} value = {nutritionForm.quantity}/>
             </div>
             
             <div className='nutrition-field'>
                 <span className='nutrition-input-title'>Calories</span>
-                <input className='form-input'  placeholder = "#calories" name = "calories" type = "number"  onChange = {handleOnInputChange} value = {nutritionForm.calories}/>
+                <input className='form-input nutrition split'  placeholder = "#calories" name = "calories" type = "number"  onChange = {handleOnInputChange} value = {nutritionForm.calories}/>
             </div>
             
         </div>
         <div className='nutrition-field'>
-        <input className='form-input' placeholder = "place image url here" name = "imageUrl" type = "text"  onChange = {handleOnInputChange} value = {nutritionForm.imageUrl}/>
+        <input className='form-input nutrition' placeholder = "place image url here" name = "imageUrl" type = "text"  onChange = {handleOnInputChange} value = {nutritionForm.imageUrl}/>
         </div>
         <Link to='/nutrition'><button type = "button" className='submit-nutrition' onClick={()=> {
             setRefresh(!refresh)

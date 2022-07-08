@@ -1,3 +1,5 @@
+
+
 .login-title {
     font-size: 45px;
 }
@@ -7,30 +9,78 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 700px;
-    height: 400px;
-    border: 1px solid var(--border-color);
+    width: 600px;
+    height: 500px;
+    border: 2px solid var(--border-color);
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px 5px rgba(0, 0, 0, .15);
+
 }
-.form-input {
+.login-form-title {
+    color: #00c98e;
+   justify-self: flex-start;
+   font-weight: 800;
+}
+.form-input.login {
     margin: 20px 0;
-    padding: 10px 20px;
+    padding: 16px 20px;
     width: 400px;
-    background: transparent;
-    border: 1px solid var(--border-color);
-    color: var(--pure-white);
+    background: rgb(238, 236, 236);
+    color: #333;
+    border: none;
 }
 .submit-login {
     margin-top: 20px;
     padding: 10px 25px;
     background: #00c98e;
-    color: white;
+    color: var(--pure-white);
     border-radius: 5px;
     width:400px;
     font-size: 23px;
     cursor: pointer;
-    border: none;
+    border: 1px solid var(--border-color);
 } 
+.email-title {
+    align-self: flex-start;
+}
+.input-forms {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 250px;
+}
+.input-form {
+    color: #00c98e;
+
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 
 .error {
     color: rgb(202, 75, 75);
+}
+
+.login-footer {
+    display: flex;
+    justify-content: center;
+    width: 600px;
+}
+
+.glowing-border {
+    border: 2px solid #dadada;
+    border-radius: 7px;
+
+}
+
+.glowing-border:focus { 
+    outline: none;
+    border-color: #ffffff;
+    box-shadow: 0 0 10px #969696;
+}
+.signUp-here {
+    color: #00c98e;;
+    cursor: pointer;
+    text-decoration: none;
 }

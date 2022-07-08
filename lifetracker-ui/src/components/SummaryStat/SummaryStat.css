@@ -8,14 +8,13 @@
     flex-wrap: wrap;
     border: 1px solid var(--pure-white);
     font-family: 'Prompt', sans-serif;
-    background: rgb(66, 223, 255);
+    background: #00c98e;
     border-radius: 6px;
     margin-bottom: 10px;
-    border: none;
+    border: var(--border-color);
     color: var(--pure-white);
     font-family: 'Trispace', sans-serif;
     font-size: 20px;
-
 }
 
 .primary-stat, .substat {

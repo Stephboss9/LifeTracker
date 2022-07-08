@@ -3,6 +3,7 @@ import "./LoginPage.css"
 import { useState } from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import LoginForm from 'components/LoginForm/LoginForm'
+import cool from "../../assets/My project.png"
 
 export default function LoginPage({setUserLoggedIn, userLoggedIn}) {
 

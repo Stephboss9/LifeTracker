@@ -23,7 +23,12 @@ import NutritionOverview from 'components/NutritionOverview/NutritionOverview';
 
 export default function AppContainer(){
 
-  
+  /**
+   * heroku url
+ * https://steph-lifetracker-app.herokuapp.com/
+ * steph-lifetracker-app
+ * create mode 100644 lifetracker-api/Procfile
+ */
   
   return (
     <AuthContextProvider>
