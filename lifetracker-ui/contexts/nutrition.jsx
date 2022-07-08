@@ -16,8 +16,9 @@ export const NutritionContextProvider = ({children}) => {
     const [error, setError] = useState(null)
     const {user} = useAuthContext()
 
-    const pushNutrition = (nutritionInfo) => {
-        client.pushNutrition(nutritionInfo, user.id)
+    const pushNutrition = async (nutritionInfo) => {
+        console.log("this one", nutritionInfo)
+       await client.pushNutrition(nutritionInfo, user.user.id)
     }
     useEffect(async () => {
         if(user) {
@@ -25,8 +26,9 @@ export const NutritionContextProvider = ({children}) => {
             setInitialized(true)
             setError(null)
             try {
-                setNutritions((await client.getNutrition(user.id)).nutritions)
-                console.log("nutritions array in Nutrition Contexty", nutritions)
+                let {data, error} = await client.getNutrition(user.user.id)
+                setNutritions(data.nutritions)
+                if (error) {setError(error)}
                 setError(null)
             }catch(err){
                 setError(err)

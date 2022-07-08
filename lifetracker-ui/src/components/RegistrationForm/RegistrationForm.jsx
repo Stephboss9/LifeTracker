@@ -2,10 +2,11 @@ import React, { useEffect } from 'react'
 import "./RegistrationForm.css"
 import { useState } from 'react'
 import { useAuthContext } from '../../../contexts/auth'
-
+import ApiClient from '../../../services/apiClient'
 
 export default function RegistrationForm({setUserLoggedIn}) {
-  const {signupUser, user, setUser, userChanged, setUserChanged, loginUser}= useAuthContext()
+  const {setIsProcessing, signupUser, user, setUser, userChanged, setUserChanged, loginUser, setError}= useAuthContext()
+  let client = new ApiClient()
 
   const [registrationForm, setRegistrationForm] = useState({email:"", userName:"", firstName:"", lastName:"", password:"", passwordConfirm:""})
   const [passwordsMatch, setPasswordsMatch] = useState(null)
@@ -15,9 +16,11 @@ export default function RegistrationForm({setUserLoggedIn}) {
 
   const handleOnRegistrateUser = async (user) => {
        
-        let userResponse =  await signupUser(user)
-        if(userResponse){loginUser(user)}
-       console.log("Registration Response", userResponse)
+        let {data, error} =  await signupUser(user)
+        if (error) {setError(error)}  
+        if(data){client.setToken(data.token); loginUser(user)}
+        console.log(  window.localStorage.getItem("lifetracker_token"))
+        setUserChanged(!userChanged)
      
   }
   const checkPasswords = (registrationForm) => { 
@@ -66,6 +69,8 @@ export default function RegistrationForm({setUserLoggedIn}) {
               if(checkPasswords(registrationForm)) {
                 setUserLoggedIn(true)
                 handleOnRegistrateUser(registrationForm)
+                console.log(user)
+
               } else {setPasswordsMatch(false)}
             }}>Create Account</button>
 

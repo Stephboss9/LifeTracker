@@ -10,7 +10,7 @@ export default function LoginForm({ setUserLoggedIn, userLoggedIn}) {
 
     const [LoginInfo, setLoginInfo] = useState({email:"", password:""})
 
-    const {user, setError, error, loginUser, userChanged, setUserChanged} = useAuthContext()
+    const {user, setError, error, loginUser, userChanged, setUserChanged, setIsProcessing} = useAuthContext()
     let client = new ApiClient()
     const handleOnInputChange = (event) => {
         setLoginInfo({ ...LoginInfo, [event.target.name]: event.target.value })
@@ -19,7 +19,8 @@ export default function LoginForm({ setUserLoggedIn, userLoggedIn}) {
     const handleOnLoginUser = async (currentUser) => {
       //get the reponse from api after logging in
       let {data, error} = await loginUser(currentUser)
-      setError(error)
+      client.setToken(data.token)
+      if (error) {setError(error)}
 
       if(data) {client.setToken(data.token)}
       console.log("Login Response", data)
@@ -29,7 +30,7 @@ export default function LoginForm({ setUserLoggedIn, userLoggedIn}) {
 
       if (data){setUserLoggedIn(true);setCorrectInfo(true)
       }else {setCorrectInfo(false); console.log(userResponse.response.data.error.message);setError(userResponse.response.data.error.message)}
-
+      setIsProcessing(false)
     }
   
   

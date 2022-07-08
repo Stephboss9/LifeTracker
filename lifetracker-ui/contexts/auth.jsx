@@ -47,7 +47,9 @@ export const AuthContextProvider = ({children}) => {
             setIsProcessing(true)
             setError(null)
             try {
-                setUser(await fetchUserFromToken())
+                let {data, error} = await fetchUserFromToken()
+                setUser(data)
+                if (error) {setError(error)}
 
                 setError(null)
             }catch(err){

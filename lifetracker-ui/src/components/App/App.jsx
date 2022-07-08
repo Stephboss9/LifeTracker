@@ -14,6 +14,7 @@ import {ActivityContextProvider} from "../../../contexts/activity"
 import AccessForbidden from 'components/AccessForbidden/AccessForbidden';
 import Sleep from 'components/Sleep/Sleep';
 import { useState } from 'react';
+import { useEffect } from 'react';
 import './App.css';
 import NutritionNew from 'components/NutritionNew/NutritionNew';
 import NutritionCard from 'components/NutritionCard/NutritionCard';
@@ -21,6 +22,9 @@ import NutritionOverview from 'components/NutritionOverview/NutritionOverview';
 
 
 export default function AppContainer(){
+
+  
+  
   return (
     <AuthContextProvider>
         <ActivityContextProvider>

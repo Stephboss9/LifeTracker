@@ -17,12 +17,13 @@ export const ActivityContextProvider = ({children}) => {
     const {user, userChanged} = useAuthContext()
 
     useEffect(async () => {
-        console.log("Current user in Activity Context: ", user)
         if(user) {
+            console.log("yoooo", user)
             setIsLoading(true)
             setError(null)
-            const {activities, error} = await client.getActivity(user)
-            setActivity(activities);
+            console.log("user in")
+            const {data, error} = await client.getActivity(user.user.id)
+            setActivity(data);
             setError(error)
         }
         setIsLoading(false)

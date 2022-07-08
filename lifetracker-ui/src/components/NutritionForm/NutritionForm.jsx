@@ -7,16 +7,17 @@ import { Link } from 'react-router-dom'
 export default function NutritionForm({name, calories, imageUrl, category, quantity}) {
     const {refresh, setRefresh, pushNutrition} = useNutritionContext()
     const {user, userChanged, setUserChanged} = useAuthContext()
-    const [nutritionForm, setNutritionForm] = useState({name:"", category:"", quantity:0, imageUrl:"",calories:0, user_id:user?.id})
+    const [nutritionForm, setNutritionForm] = useState({name:"", category:"", quantity:0, imageUrl:"",calories:0, user_id:user.user.id})
 
 
 
-   const handleOnSubmitNutritionForm = (nutritionForm) => {
+   const handleOnSubmitNutritionForm = async (nutritionForm) => {
         let user_id = "user_id"
-        console.log("IN NUTRITION FORM, USER: ", user, "user id", user.id)
-        let id = user?.id
-        setNutritionForm[{...nutritionForm, [user_id]: id}]
-        pushNutrition(nutritionForm)
+        setUserChanged(!userChanged)
+        console.log("user_id", user.user.id)
+        setNutritionForm[{...nutritionForm, [user_id]: user.user.id}]
+        console.log("nutrition form", nutritionForm)
+       await pushNutrition(nutritionForm)
         setUserChanged(!userChanged)
 
    }

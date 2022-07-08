@@ -15,7 +15,7 @@ class ApiClient {
 
     }
 
-    async request ({endpoint, method = "GET", data = {}}){
+    async request ({endpoint, method = "GET", data = {}, id = null}){
        //handles login requests
        
 
@@ -30,13 +30,15 @@ class ApiClient {
         headers["Authorization"] = `Bearer ${this.token}`
        }
 
+       if(id){headers["user_id"] = `${id}`}
+    
        try {
         const res = await axios({url, method, data, headers})
             return {data:res.data, error:null}
 
        } catch(error) {
             console.log("Error caught in ApiClient", error)
-            const message = err?.response?.data?.error?.message
+            const message = error?.response?.data?.error?.message
             return {data:null, error:message || String(err)}
        }
     }
@@ -65,16 +67,21 @@ class ApiClient {
     }
 
     getNutrition = async (userId) =>{
-        return await this.request({endpoint: `nutrition/${userId}`, method: `GET`, data:null})
+        console.log("userId ingetNutrition method", userId)
+
+        return await this.request({endpoint: `nutrition`, method: `GET`, data:{}, id: userId})
 
     }
 
     pushNutrition = async (nutritionInfo, userId) => {
-        return await this.request({endpoint: `nutrition`, method: `POST`, data: nutritionInfo})
+        console.log("nutrition info id is: ", nutritionInfo.user_id)
+        return await this.request({endpoint: `nutrition`, method: `POST`, data: nutritionInfo, id:userId})
 
     }
-    getActivity= async (user) => {
-        return await this.request({endpoint: `activity`, method: `GET`, data: user} )
+    getActivity= async (userId) => {
+        console.log("userId in getActivity method", userId)
+
+        return await this.request({endpoint: `activity`, method: `GET`, data: null, id:userId} )
     }
 
     
