@@ -1,0 +1,10 @@
+
+.nutrition-new{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.nutrition-new {
+    font-size: 30px;
+}
