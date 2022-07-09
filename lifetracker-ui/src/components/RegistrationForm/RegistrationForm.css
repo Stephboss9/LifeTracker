@@ -1,0 +1,96 @@
+.registration-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    border-radius: 8px;
+    width: 700px;
+    height: 900px;
+    border: 1px solid var(--border-color);
+    color: #989797;
+    box-shadow: 0px 0px 8px 5px rgba(0, 0, 0, .15);
+
+}
+
+.registration-form-title {
+    margin-bottom: 80px;
+    font-size: 30px;
+    }
+    
+.form-input {
+    margin: 20px 0;
+    padding: 16px 20px;
+    width: 500px;
+    background: rgb(238, 236, 236);
+    color: #333;
+}
+::placeholder {
+    color: var(--pure-white);
+}
+
+.split-input {
+    display: flex;
+    justify-content: center;
+}
+
+.split-input .input-field .form-input {
+    width: 250px;
+}
+
+
+.split-input .input-field{
+    width: 250px;
+}
+
+
+
+.input-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width:500px;
+    
+}
+.input-title {
+    align-self: flex-start;
+    font-size: 20px;
+
+}
+.submit-registration {
+    margin-top: 20px;
+    padding: 10px 25px;
+    background: #00c98e;
+    color: white;
+    border-radius: 5px;
+    border:1px solid var(--border-color);
+    width:500px;
+    font-size: 23px;
+    cursor: pointer;
+} 
+.glowing-input-border {
+    border: 2px solid #ffffff;
+    border-radius: 7px;
+
+}
+
+::placeholder {
+    color: rgb(182, 178, 178);
+    font-size: 18px;
+}
+.glowing-input-border:focus { 
+    outline: none;
+    border-color: #ffffff;
+    box-shadow: 0 0 10px #969696;
+}
+
+.signup-here{
+    color: #00c98e;;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 18px;
+}
+.question {
+    font-size: 18px;
+}
