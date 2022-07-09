@@ -8,7 +8,7 @@ Everywhere around us is data waiting to be collected and utilized. In recent yea
 
 This application will be built using the battle-tested PERN stack - PostgreSQL, Express, React, and Node.
 ## Walkthroughs
-<img src='walkthrough_1.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='walkthrough_3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 <img src='walkthrough_2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
