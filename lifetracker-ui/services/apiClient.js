@@ -2,7 +2,7 @@ import axios from "axios"
 const PAGE_URL = "http://localhost:3000"
 
 class ApiClient {
-    constructor(remoteHostUrl = "https://lifetracker-web-app.herokuapp.com/"){
+    constructor(remoteHostUrl = "http://localhost:3000"){
         this.remoteHostUrl = remoteHostUrl
         this.token = null
         this.currentUser = null
@@ -91,4 +91,4 @@ class ApiClient {
 
 }
 
-export default new ApiClient("https://lifetracker-web-app.herokuapp.com/")
+export default ApiClient
