@@ -80,7 +80,7 @@ export default function RegistrationForm({setUserLoggedIn}) {
             }}>Create Account</button>
         </form>
         <div className='login-footer'>
-          <h4 className='question'>Already have an account? <Link className = "login-here" to = "/login"><span className='signUp-here'>Login Here!</span></Link></h4>
+          <h4 className='question'>Already have an account? <Link className = "login-here" to = "/login"><span className='login-here'>Login Here!</span></Link></h4>
       </div>
     </div>
      

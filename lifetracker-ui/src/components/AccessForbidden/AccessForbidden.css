@@ -9,3 +9,8 @@
 .forbidden-title {
     font-size: 60px;
 }
+
+.forbidden-subtitle {
+    font-size: 18px;
+    color:var(--pure-white)
+}
