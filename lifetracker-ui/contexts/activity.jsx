@@ -18,10 +18,8 @@ export const ActivityContextProvider = ({children}) => {
 
     useEffect(async () => {
         if(user) {
-            console.log("yoooo", user)
             setIsLoading(true)
             setError(null)
-            console.log("user in")
             const {data, error} = await client.getActivity(user.user.id)
             setActivity(data);
             setError(error)

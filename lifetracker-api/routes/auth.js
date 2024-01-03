@@ -29,7 +29,6 @@ authRouter.post("/login", async (req, res, next) => {
 
 authRouter.post("/register", async (req, res, next) => {
     try {
-        console.log(req.body)
         const user = await User.register(req.body)
         const token = generateToken(user)
         return res.status(201).json({"user": {"email": `${user.email}`, "name": `${user.firstName}`}, "token":token})

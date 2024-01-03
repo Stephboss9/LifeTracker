@@ -21,12 +21,10 @@ export default function RegistrationForm({setUserLoggedIn}) {
         let {data, error} =  await signupUser(user)
         if (error) {setError(error)}  
         if(data){client.setToken(data.token); loginUser(user)}
-        console.log(  window.localStorage.getItem("lifetracker_token"))
         setUserChanged(!userChanged)
      
   }
   const checkPasswords = (registrationForm) => { 
-    console.log("passwords check", registrationForm.password, registrationForm.passwordConfirm)
     if(registrationForm.password ==='' && registrationForm.passwordConfirm === ''){
       return false
     }
@@ -74,7 +72,6 @@ export default function RegistrationForm({setUserLoggedIn}) {
               if(checkPasswords(registrationForm)) {
                 setUserLoggedIn(true)
                 handleOnRegistrateUser(registrationForm)
-                console.log(user)
 
               } else {setPasswordsMatch(false)}
             }}>Create Account</button>

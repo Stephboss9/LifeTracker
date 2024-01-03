@@ -17,11 +17,8 @@ const jwtFrom = ({headers}) => {
 const extractUserFromJwt = (req,res,next)=> {
     try  {
         const token = jwtFrom(req)
-        console.log("current token", token)
         if (token) {
-            console.log("hey")
             res.locals.user = validateToken(token)
-            console.log("res.locals.user", res.locals.user)
         }
         return next()
     } catch(error){
@@ -32,7 +29,6 @@ const extractUserFromJwt = (req,res,next)=> {
 function requireAuthenticatedUser (req, res, next){
     try {
         const {user} = res.locals
-        console.log("currentUser", user)
         if(!user?.email) {
             throw new UnauthorizedError("Unathorized User")
         }

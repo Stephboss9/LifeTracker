@@ -15,7 +15,6 @@ export default function NutritionDetail() {
 
   useEffect( async ()=> {
     let {data, error} = await apiClient.getNutritionById(nutritionId)
-    console.log(`nutrition with id(${nutritionId}): `, data, "error state is: ", error)
     if (data) {setNutrition(data.nutrition)}
     if (error) {setError(error)}
   }, [])

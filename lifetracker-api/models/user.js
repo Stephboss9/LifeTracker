@@ -36,7 +36,6 @@ class User {
     }
 
     static async register(credentials){
-        console.log(credentials)
 
         const requiredFields = ["email", "password", "userName", "firstName", "lastName"]
         requiredFields.forEach(field => {
@@ -63,7 +62,6 @@ class User {
              VALUES($1, $2, $3, $4, $5)   
              RETURNING id, username, first_name, last_name, email, created_at;
            `  , [credentials.userName, hashedPW, credentials.firstName, credentials.lastName, credentials.email])
-                console.log("yo")
             const user = result.rows[0]
             return User.makePublicUser(user)
 

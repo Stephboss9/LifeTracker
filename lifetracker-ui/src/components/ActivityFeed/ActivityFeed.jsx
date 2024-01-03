@@ -10,9 +10,7 @@ export default function ActivityFeed({totalCaloriesPerday, avgCaloriesPerCategor
                 <h4 className = "day-title">Total Calories Per Day</h4>
                 <div className = "avg-card-grid">
                     {avgCaloriesPerCategory.map((categoryCalories, index) => {
-                        console.log(`calories ${index}`, categoryCalories)
                         if(index < 6){
-                            console.log("calories per category", categoryCalories.avgCaloriesPerCategory)
 
                         return (<SummaryStat key = {index} label = {"calories"} stat = {categoryCalories.avgCaloriesPerCategory} substat = {categoryCalories.category} isDate = {false}/>)
                         }
@@ -24,7 +22,6 @@ export default function ActivityFeed({totalCaloriesPerday, avgCaloriesPerCategor
                 <div className = "total-card-grid">
                     {totalCaloriesPerday.map((categoryCalories, index) => {
                         if(index < 6){
-                            console.log("calories per day", categoryCalories.totalCaloriesPerDay)
                         return (<SummaryStat key = {index} label = {"calories"} stat = {categoryCalories.totalCaloriesPerDay} substat = {categoryCalories.date} isDate = {true}/>)
                         }
                     })}

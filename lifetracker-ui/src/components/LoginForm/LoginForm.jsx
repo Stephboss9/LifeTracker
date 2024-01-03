@@ -23,9 +23,7 @@ export default function LoginForm({ setUserLoggedIn, userLoggedIn}) {
       let {data, error} = await loginUser(currentUser)
       if(data) {client.setToken(data.token)}
       if (error) {setLoginError(error)}
-      console.log(error)
       if(data) {client.setToken(data.token)}
-      console.log("Login Response", data)
 
       //if valid credentials were used, navigate to activity page, else dont
       setUserChanged(!userChanged)

@@ -9,7 +9,6 @@ import ActivityFeed from 'components/ActivityFeed/ActivityFeed'
 export default function ActivityPage() {
   const {activity, refresh, setRefresh} = useActivityContext()
   const {isProcessing} = useAuthContext()
-  console.log("activity in activity Page", activity)
   
 
   return (
