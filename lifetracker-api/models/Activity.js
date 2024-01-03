@@ -5,7 +5,6 @@ class Activity {
 
     static calculateDailyCaloriesSummaryStats = async (userId) => {
         const query = `SELECT created_at::date AS "date", SUM(calories*quantity) AS "totalCaloriesPerDay" FROM nutrition WHERE user_id = $1 GROUP BY created_at::date;`
-        console.log("userId in Activity",userId)
         const values = [userId]
 
         let result = await db.query(query, values)

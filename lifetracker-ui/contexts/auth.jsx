@@ -26,7 +26,6 @@ export const AuthContextProvider = ({children}) => {
         return currentUser
     }
     const signupUser = async (user)=> {
-        console.log("1")
         return await client.signup(user)
     
    
@@ -39,9 +38,7 @@ export const AuthContextProvider = ({children}) => {
     }
 
     useEffect(async () => {
-        console.log("USE EFFECT HAS BEEN CALLED")
         let currentToken = window.localStorage.getItem("lifetracker_token")
-        console.log("currentToken in auth context useEffect", currentToken)
         if(currentToken) {
             client.setToken(currentToken)
             setIsProcessing(true)

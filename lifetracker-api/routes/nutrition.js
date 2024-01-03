@@ -10,7 +10,6 @@ const nutritionRouter = express.Router()
 
 nutritionRouter.get("/", async (req, res, next) => {
     try {
-        console.log("header")
         userId = req.headers['user_id']
        const nutritions = await Nutrition.listNutritionForUser(userId)
        return res.status(201).json({"nutritions":nutritions})
@@ -22,7 +21,6 @@ nutritionRouter.get("/", async (req, res, next) => {
 
 nutritionRouter.post("/", async (req, res, next) => {
     try {
-        console.log(req.body)
         const nutrition  = await Nutrition.createNutrition(req.body)
         return res.status(201).json({"nutrition":nutrition})
     }catch (err){
@@ -33,7 +31,6 @@ nutritionRouter.post("/", async (req, res, next) => {
 nutritionRouter.get("/:nutritionId", async (req, res, next) => {
     try {
         const nutrition = await Nutrition.fetchNutritionById(req.params)
-        console.log("nutrition", nutrition)
         return res.status(200).json({"nutrition":nutrition})
     }catch (err){
         next(err)

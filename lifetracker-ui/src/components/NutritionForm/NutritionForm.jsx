@@ -14,9 +14,7 @@ export default function NutritionForm({name, calories, imageUrl, category, quant
    const handleOnSubmitNutritionForm = async (nutritionForm) => {
         let user_id = "user_id"
         setUserChanged(!userChanged)
-        console.log("user_id", user.user.id)
         setNutritionForm[{...nutritionForm, [user_id]: user.user.id}]
-        console.log("nutrition form", nutritionForm)
        await pushNutrition(nutritionForm)
         setUserChanged(!userChanged)
 
